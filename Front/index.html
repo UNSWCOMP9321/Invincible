@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="app.css">
+<body>
+<div id="app">
+    <div id="header">{{title}}</div>
+    <div id="content">{{content}}</div>
+    <transition>
+        <div id="nav_bar">nav_bar</div>
+    </transition>
+</div>
+
+<script src="vue.js"></script>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            title:"Here is header",
+            content:"Here is content",
+            nav_bar:"Here is nva bar"
+        }
+    })
+
+</script>
+<script src="jquery-3.2.1.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
