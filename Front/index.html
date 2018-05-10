@@ -5,13 +5,15 @@
     <title>Title</title>
 </head>
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="animate.css">
 <body>
-<div id="app">
+<div id="app" @mousemove="updateXY">
     <div id="header">{{title}}</div>
-    <div id="content">{{content}}</div>
-    <transition>
-        <div id="nav_bar">nav_bar</div>
+    <div id="content" >{{content}}</div>
+    <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
+        <div id="nav_bar" v-show="mouse_X < 100">nav_bar</div>
     </transition>
+    <div>{{mouse_X}}, {{mouse_Y}}</div>
 </div>
 
 <script src="vue.js"></script>
@@ -22,7 +24,17 @@
         data:{
             title:"Here is header",
             content:"Here is content",
-            nav_bar:"Here is nva bar"
+            nav_bar:"Here is nva bar",
+            mouse_X:200,
+            mouse_Y:0,
+            show_nav:false
+        },
+        methods:{
+            updateXY:function (e) {
+                this.mouse_X = e.clientX;
+                this.mouse_Y = e.offsetY;
+            }
+
         }
     })
 
