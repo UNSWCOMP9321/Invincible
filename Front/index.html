@@ -9,7 +9,7 @@
 <body>
 <div id="app" @mousemove="updateXY">
     <div id="header">{{title}}</div>
-    <div id="content" >{{content}}
+    <div class="content" >
         <router-view></router-view>
     </div>
     <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
@@ -21,7 +21,7 @@
             </ul>
         </div>
     </transition>
-    <router-view></router-view>
+
     <div>{{mouse_X}}, {{mouse_Y}}</div>
 </div>
 
@@ -30,13 +30,28 @@
 <script>
 
     var demo1 = {
-        template:"<h1>First Demo</h1>"
+        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+                    <div class="content">
+                        <h1>First Demo</h1>
+                        <img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">
+                    </div>
+                  </transition>`
     };
     var demo2 = {
-        template:"<h1>Second Demo</h1>"
+        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+                    <div class="content">
+                        <h1>Second Demo</h1>
+                        <img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">
+                    </div>
+                  </transition>`
     };
     var demo3 = {
-        template:"<h1>Third Demo</h1>"
+        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+                    <div class="content">
+                        <h1>Third Demo</h1>
+                        <img src="https://docs.microsoft.com/en-us/sql/reporting-services/report-builder/media/report-builder-quick-pie-chart.png?view=sql-server-2017" alt="">
+                    </div>
+                  </transition>`
     };
 
     var routes = [

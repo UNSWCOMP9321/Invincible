@@ -28,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
     border: 1px solid red;
 }
 
-#content{
+.content{
     width: 80%;
     height: 500px;
     border: 1px solid red;
