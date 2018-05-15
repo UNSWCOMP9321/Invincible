@@ -6,15 +6,27 @@
 </head>
 <link rel="stylesheet" href="app.css">
 <link rel="stylesheet" href="animate.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <body>
 <div id="app" @mousemove="updateXY">
-    <div id="header">{{title}}</div>
+    <div id="header">
+        <div>{{title}}</div>
+        <div id="header_bar">
+            <ul>
+                <li><router-link to="/main">Main</router-link></li>
+                <li><router-link to="/demo1">Demo1</router-link></li>
+                <li><router-link to="/demo2">Demo2</router-link></li>
+                <li><router-link to="/demo3">Demo3</router-link></li>
+            </ul>
+        </div>
+    </div>
     <div class="content" >
         <router-view></router-view>
     </div>
     <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
         <div id="nav_bar" v-show="mouse_X < 100">
             <ul>
+                <li><router-link to="/main">Main</router-link></li>
                 <li><router-link to="/demo1">Demo1</router-link></li>
                 <li><router-link to="/demo2">Demo2</router-link></li>
                 <li><router-link to="/demo3">Demo3</router-link></li>
@@ -23,28 +35,148 @@
     </transition>
 
     <div>{{mouse_X}}, {{mouse_Y}}</div>
+    <button @click="testb()">TEST</button>
+    <br>
+    <hr>
+    <hr>
+    <!--<canvas id="can_demo2"></canvas>-->
+    <!--<canvas id="can_demo2"></canvas>-->
 </div>
 
 <script src="vue.js"></script>
 <script src="vue-router.js"></script>
+<script src="vue-resource.js"></script>
+<script src="jquery-3.2.1.js"></script>
 <script>
 
+    var main = {
+        template:`
+<div id="main">
+    <ul>
+    <li>
+        <router-link to="/demo1"><div class="items">
+            <img class="item_img" src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">
+        </div></router-link></li>
+    <li>
+        <router-link to="/demo2"><div class="items">
+            <img class="item_img" src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">
+        </div></router-link>
+    </li>
+    <li>
+        <router-link to="/demo3"><div class="items">
+            <img class="item_img" src="https://docs.microsoft.com/en-us/sql/reporting-services/report-builder/media/report-builder-quick-pie-chart.png?view=sql-server-2017" alt="">
+
+        </div></router-link>
+    </li>
+    <li><div class="items"></div></li>
+    <li><div class="items"></div></li>
+    <li><div class="items"></div></li>
+    </ul>
+</div>
+`
+    };
+
     var demo1 = {
+        data:function () {
+            return {str:""};
+        },
         template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
                         <h1>First Demo</h1>
                         <img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">
+                        <button @click="testb()">TEST</button>
+                        <div>{{str}}</div>
                     </div>
-                  </transition>`
+                  </transition>`,
+        methods:{
+
+            testb:function () {
+                this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+                    params:{
+                        wd:"a"
+                    },
+                    jsonp:"cb"
+                }).then(function (value) {
+                    //this.arr = value.body.s;
+                    console.log(value);
+                    this.str = value.body.s;
+                    console.log(this.str);
+                })
+            }
+
+        }
+
     };
     var demo2 = {
-        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+        template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
                         <h1>Second Demo</h1>
-                        <img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">
+                        <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
+                        <button @click="show_can">SHOW</button>
+                        <canvas id="can_demo2"></canvas>
                     </div>
-                  </transition>`
-    };
+                  </transition>`,
+        methods: {
+            show_can: function () {
+
+
+                let myChart = document.getElementById('can_demo2');
+                if (myChart) {
+                    console.log('666');
+                    console.log(myChart);
+                    Chart.defaults.global.defaultFontFamily='lato';
+                    Chart.defaults.global.defaultFontSize=10;
+
+                    let massPopChart = new Chart(myChart.getContext('2d'), {
+                        type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                        data: {
+                            labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge', 'New Bedford'],
+                            datasets: [{
+                                label: 'Population',
+                                data: [1814, 6175, 4256, 8453, 2123, 7560],
+                                // backgroundColor:'green'
+                                backgroundColor:[
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'],
+                                borderWidth:1,
+                                borderColor:'#777',
+                                hoverBorderWidth:3,
+                                hoverBorderColor:'#000'
+                            }],
+                        },
+                        options: {
+                            title:{
+                                display:true,
+                                text: "Cities In Massach",
+                                fontSize:25
+                            },
+                            legend:{
+                                position:'right',
+                                labels:{
+                                    fontColor:'#000'
+                                }
+                            },
+                            layout:{
+                                padding:{
+                                    left:50,
+                                    right:0,
+                                    bottom:0,
+                                    top:0
+                                }
+                            },
+                            tooltips:{
+                                enabled:true
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
     var demo3 = {
         template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
@@ -55,6 +187,7 @@
     };
 
     var routes = [
+        {"path":"/main",component:main},
         {"path":"/demo1",component:demo1},
         {"path":"/demo2",component:demo2},
         {"path":"/demo3",component:demo3}
@@ -68,7 +201,7 @@
         router,
         el:"#app",
         data:{
-            title:"Here is header",
+            title:"Comp 9021 demo",
             content:"Here is content",
             nav_bar:"Here is nva bar",
             mouse_X:200,
@@ -85,7 +218,9 @@
     })
 
 </script>
-<script src="jquery-3.2.1.js"></script>
+<script>
+
+</script>
 <script src="app.js"></script>
 </body>
 </html>
