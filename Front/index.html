@@ -99,7 +99,15 @@
                 map_color:['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
                 map_value:[{name: 'Alabama', value: 50},
                     // {name: 'Alaska', value: 731449},
-                    {name: 'Arizona', value: 4}]
+                    {name: 'Arizona', value: 4}],
+                locations:{'aa':[145.52,-24.35],
+                    'bb':[150,-33.65],
+                    'cc':[136.37,-31.13],
+                    'dd':[150.65,-28.01]},
+                data_val:[{name: 'aa', value: 194},
+                    {name: 'bb', value: 999},
+                    {name: 'cc', value: 273},
+                    {name: 'dd', value: 279}]
             };
         },
         template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
@@ -295,19 +303,18 @@
                 option = null;
                 myChart.showLoading();
 
+                var geo_val = this.locations;
+                var data_val = this.data_val;
+                console.log('-----');
+                console.log(geo_val);
+                console.log(data_val)
                 $.get('map/Australia.json', function (geoJson) {
 
                     myChart.hideLoading();
 
                     echarts.registerMap('Australia', geoJson);
-                    geoCoordMap = {'aa':[145.52,-24.35],
-                                   'bb':[150,-33.65],
-                                   'cc':[136.37,-31.13],
-                                   'dd':[150.65,-28.01]};
-                    data = [{name: 'aa', value: 194},
-                                {name: 'bb', value: 999},
-                                {name: 'cc', value: 273},
-                                {name: 'dd', value: 279}];
+                    geoCoordMap = geo_val;
+                    data = data_val;
                     var maxSize4Pin = 100,
                         minSize4Pin = 20;
                     var max = 1000,
