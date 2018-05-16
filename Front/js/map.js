@@ -37,6 +37,7 @@ $.get('map/USA.json', function (usaJson) {
                 return params.seriesName + '<br/>' + params.name + ': ' + value;
             }
         },
+
         visualMap: {
             left: 'right',
             min: 1,
