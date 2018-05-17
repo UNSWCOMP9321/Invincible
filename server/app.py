@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,jsonify
 from flask_restful import Resource, Api, reqparse, abort
 from flask_cors import CORS
 import connectdata
@@ -11,6 +11,10 @@ class City_job_au(Resource):
     def get():
         return connectdata.get_CITY_AU(),200
 
+@app.route("/city_job_au/<name>", methods=['GET'])
+def retrieve_city(name):
+    return jsonify(connectdata.retrive_CITY_AU(name)),200
+
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -20,6 +24,8 @@ def after_request(response):
 
 api = Api(app)
 api.add_resource(City_job_au, '/city_job_au', methods=['GET'])
+
+
 
 if __name__ == '__main__':
     app.run()
