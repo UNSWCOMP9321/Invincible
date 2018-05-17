@@ -9,6 +9,16 @@
 <link rel="stylesheet" href="bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="echarts.min.js"></script>
+
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>-->
+<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
 <body>
 <div id="app" @mousemove="updateXY">
 
@@ -89,7 +99,15 @@
                 map_color:['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
                 map_value:[{name: 'Alabama', value: 50},
                     // {name: 'Alaska', value: 731449},
-                    {name: 'Arizona', value: 4}]
+                    {name: 'Arizona', value: 4}],
+                locations:{'aa':[145.52,-24.35],
+                    'bb':[150,-33.65],
+                    'cc':[136.37,-31.13],
+                    'dd':[150.65,-28.01]},
+                data_val:[{name: 'aa', value: 194},
+                    {name: 'bb', value: 999},
+                    {name: 'cc', value: 273},
+                    {name: 'dd', value: 279}]
             };
         },
         template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
@@ -97,10 +115,11 @@
                         <h1>First Demo</h1>
                         <input class="input_bar" type="text" >
                         <button class="btn-primary btn">Input</button>
-                        <button class="btn btn-success input_button">UK</button>
+                        <button class="btn btn-success input_button" @click="show_au">AU</button>
                         <button class="btn btn-danger input_button2" @click="show_map">US</button>
                         <br>
-                        <div id="picture" style="width: 600px;height: 400px"></div>
+                        <div id="picture" style="width: 100%;height: 600px"></div>
+                        <div id="picture_2" style="width: 100%;height: 600px"></div>
                         <!--<img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">-->
                         <button @click="testb()">TEST</button>
                         <div>{{str}}</div>
@@ -126,12 +145,15 @@
                 map_value = this.map_value;
                 var map_color = this.map_color;
                 var dom = document.getElementById("picture");
+                $("#picture_2").hide();
+                $("#picture").show();
                 var myChart = echarts.init(dom);
                 var app = {};
                 option = null;
                 myChart.showLoading();
 
-                $.get('map/USA.json', function (usaJson) {
+                $.get('map/England.json', function (usaJson) {
+                    console.log(usaJson)
                     console.log(this.map_value);
                     myChart.hideLoading();
 
@@ -263,11 +285,259 @@
                     };
 
                     myChart.setOption(option);
-                });;
+                });
                 // if (option && typeof option === "object") {
                 //     myChart.setOption(option, true);
                 // }on () {
 
+            },
+            show_au:function () {
+                console.log(this.map_value);
+                map_value = this.map_value;
+                var map_color = this.map_color;
+                var dom = document.getElementById("picture_2");
+                $("#picture_2").show();
+                $("#picture").hide();
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                myChart.showLoading();
+
+                var geo_val = this.locations;
+                var data_val = this.data_val;
+                console.log('-----');
+                console.log(geo_val);
+                console.log(data_val)
+                $.get('map/Australia.json', function (geoJson) {
+
+                    myChart.hideLoading();
+
+                    echarts.registerMap('Australia', geoJson);
+                    geoCoordMap = geo_val;
+                    data = data_val;
+                    var maxSize4Pin = 100,
+                        minSize4Pin = 20;
+                    var max = 1000,
+                        min = 100; // todo
+                    var convertData = function (data) {
+                        var res = [];
+                        for (var i = 0; i < data.length; i++) {
+                            var geoCoord = geoCoordMap[data[i].name];
+                            if (geoCoord) {
+                                res.push({
+                                    name: data[i].name,
+                                    value: geoCoord.concat(data[i].value)
+                                });
+                            }
+                        }
+                        return res;
+                    };
+                    console.log(convertData(data))
+                    myChart.setOption(option = {
+                        title: {
+                            text: 'Australis Job distribution',
+                            subtext: '',
+                            sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: function(params) {
+                                if (typeof(params.value)[2] == "undefined") {
+                                    return params.name + ' : ' + params.value;
+                                } else {
+                                    return params.name + ' : ' + params.value[2];
+                                }
+                            }
+                        },
+
+                        toolbox: {
+                            show: true,
+                            orient: 'vertical',
+                            left: 'right',
+                            top: 'center',
+                            feature: {
+                                dataView: {readOnly: false},
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        visualMap: {
+                            min: 1,
+                            max: 100,
+                            type:"continuous",
+                            text:['High','Low'],
+                            realtime: false,
+                            calculable: true,
+                            inRange: {
+                                color: ['lightskyblue','yellow', 'orangered']
+                            }
+                        },
+                        geo: {
+                            show: true,
+                            map:"Australia",
+                            mapType: 'Australia', // 自定义扩展图表类型
+                            zoom:1.8,
+                            label: {
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: false,
+                                }
+                            },
+                            roam: true,
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#bcb7b5',
+                                    borderColor: '#3B5077',
+                                },
+                                emphasis: {
+                                    areaColor: '#2B91B7',
+                                }
+                            }
+                        },
+                        series: [
+                            // {
+                            //     name: '香港18区人口密度',
+                            //     type: 'map',
+                            //     mapType: 'Australia', // 自定义扩展图表类型
+                            //     roam: true,
+                            //     itemStyle:{
+                            //         normal:{label:{show:false}},
+                            //         emphasis:{label:{show:true}}
+                            //     },
+                            //     data:[
+                            //         {name: 'Western Australia', value: 20},
+                            //         {name: 'Norfolk Island"', value: 15477.48},
+                            //         // {name: 'Macquarie Island"', value: 31686.1},
+                            //         // {name: '南区', value: 6992.6}
+                            //         // {name: '油尖旺', value: 44045.49},
+                            //         // {name: '深水埗', value: 40689.64},
+                            //         // {name: '九龙城', value: 37659.78},
+                            //         // {name: '黄大仙', value: 45180.97},
+                            //         // {name: '观塘', value: 55204.26},
+                            //         // {name: '葵青', value: 21900.9},
+                            //         // {name: '荃湾', value: 4918.26},
+                            //         // {name: '屯门', value: 5881.84},
+                            //         // {name: '元朗', value: 4178.01},
+                            //         // {name: '北区', value: 2227.92},
+                            //         // {name: '大埔', value: 2180.98},
+                            //         // {name: '沙田', value: 9172.94},
+                            //         // {name: '西贡', value: 3368},
+                            //         // {name: '离岛', value: 806.98}
+                            //     ],
+                            //     // 自定义名称映射
+                            //     // nameMap: {
+                            //     //     'Central and Western': '中西区',
+                            //     //     'Eastern': '东区',
+                            //     //     'Islands': '离岛',
+                            //     //     'Kowloon City': '九龙城',
+                            //     //     'Kwai Tsing': '葵青',
+                            //     //     'Kwun Tong': '观塘',
+                            //     //     'North': '北区'
+                            //     //     // 'Sai Kung': '西贡',
+                            //     //     // 'Sha Tin': '沙田',
+                            //     //     // 'Sham Shui Po': '深水埗',
+                            //     //     // 'Southern': '南区',
+                            //     //     // 'Tai Po': '大埔',
+                            //     //     // 'Tsuen Wan': '荃湾',
+                            //     //     // 'Tuen Mun': '屯门',
+                            //     //     // 'Wan Chai': '湾仔',
+                            //     //     // 'Wong Tai Sin': '黄大仙',
+                            //     //     // 'Yau Tsim Mong': '油尖旺',
+                            //     //     // 'Yuen Long': '元朗'
+                            //     // }
+                            // },
+                            {
+                                name: 'credit_pm2.5',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: convertData(data),
+                                symbolSize: function(val) {
+                                    return val[2] / 10000;
+                                },
+                                label: {
+                                    normal: {
+                                        formatter: '{b}',
+                                        position: 'right',
+                                        show: true
+                                    },
+                                    emphasis: {
+                                        show: true
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: '#05C3F9'
+                                    }
+                                }
+                            },
+                            {
+                                type: 'map',
+                                map: 'Australia',
+                                geoIndex: 0,
+                                zoom:3,
+                                aspectScale: 0.75, //长宽比
+                                showLegendSymbol: false, // 存在legend时显示
+                                label: {
+                                    normal: {
+                                        show: false
+                                    },
+                                    emphasis: {
+                                        show: false,
+                                        textStyle: {
+                                            color: '#fff'
+                                        }
+                                    }
+                                },
+                                roam: true,
+                                itemStyle: {
+                                    normal: {
+                                        areaColor: '#031525',
+                                        borderColor: '#3B5077',
+                                    },
+                                    emphasis: {
+                                        areaColor: '#2B91B7'
+                                    }
+                                },
+                                animation: false,
+                                data: data
+                            },
+                            {
+                                name: '点',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                symbol: 'pin',
+                                symbolSize: function(val) {
+                                    var a = (maxSize4Pin - minSize4Pin) / (max - min);
+                                    var b = minSize4Pin - a * min;
+                                    b = maxSize4Pin - a * max;
+                                    return a * val[2] + b;
+                                },
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        formatter:function (val) {
+                                            console.log(val.value);
+                                            return val.value[2];
+                                        },
+                                        textStyle: {
+                                            color: '#fff',
+                                            fontSize: 9,
+                                        }
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: '#F62157', //标志颜色
+                                    }
+                                },
+                                zlevel: 6,
+                                data: convertData(data),
+                            }
+                        ]
+                    });
+                });
             }
 
         }
@@ -340,6 +610,7 @@
                         }
                     });
                 }
+
             }
         }
     }
