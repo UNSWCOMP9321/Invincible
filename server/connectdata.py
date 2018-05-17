@@ -1,5 +1,8 @@
 import sqlite3
-conn = sqlite3.connect('.\database\COMP9313_Ass3.db',check_same_thread=False)
+import os
+
+dbpath = os.getcwd()+os.path.sep+"database"+os.path.sep+"COMP9313_Ass3.db"
+conn = sqlite3.connect(dbpath,check_same_thread=False)
 
 cu=conn.cursor()
 
