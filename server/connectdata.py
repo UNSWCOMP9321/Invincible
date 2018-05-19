@@ -49,7 +49,7 @@ def get_WORK_HOURS():
     data=[]
     for c in cu.fetchall():
 
-        loc_dic[c[0]]=(c[1],c[2])
+        loc_dic[c[0]]=(c[2],c[1])
 
         data.append({"name":c[0],"value":c[3]})
 
