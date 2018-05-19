@@ -114,6 +114,28 @@ footer, header, hgroup, menu, nav, section {
     float: left;
     list-style: none;
     margin-right: 20px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width:auto
+}
+
+#rec_city{
+    position: absolute;
+    top:200px;
+    width: 300px;
+    height: auto;
+    border: 1px red solid;
+    background-color: white;
+}
+
+#rec_city ul li{
+   list-style: none;
+}
+
+
+.rec_list{
+    background-color: white;
+}
+
+.rec_list:hover{
+    background-color: yellow;
 }

@@ -3,5 +3,3 @@ console.log(width);
 $("#container").css("width",width);
 
 
-
-
