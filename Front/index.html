@@ -298,6 +298,7 @@
                     });
                     this.locations = geo_val;
                     this.citys = data_val;
+                    console.log("################");
                     this.show_au();
             },
             show_uk_example:function () {
@@ -343,6 +344,7 @@
                 map_value = this.map_value;
                 var map_color = this.map_color;
                 var dom = document.getElementById("picture_2");
+
                 $("#picture_2").show();
                 $("#picture").hide();
                 var myChart = echarts.init(dom);
@@ -453,6 +455,7 @@
                             map:"England",
                             mapType: 'England', // 自定义扩展图表类型
                             zoom:1.8,
+                            scaleLimit:{min:0.8,max:1.5},
                             label: {
                                 normal: {
                                     show: false
@@ -569,9 +572,9 @@
                 console.log(this.map_value);
                 map_value = this.map_value;
                 var map_color = this.map_color;
-                var dom = document.getElementById("picture_2");
-                $("#picture_2").show();
-                $("#picture").hide();
+                var dom = document.getElementById("picture");
+                $("#picture").show();
+                $("#picture_2").hide();
                 var myChart = echarts.init(dom);
                 var app = {};
                 option = null;
@@ -680,6 +683,7 @@
                             map:"Australia",
                             mapType: 'Australia', // 自定义扩展图表类型
                             zoom:1.8,
+                            scaleLimit:{min:0.8,max:1.8},
                             label: {
                                 normal: {
                                     show: false
