@@ -377,21 +377,21 @@
                 // console.log(data_val)
                 console.log('------$$$$$$$-------');
                 console.log(this.locations);
-                // this.$http.get("http://localhost:5000/city_job_au",{emulateJSON:true}).then(function (value) {
-                //     //this.arr = value.body.s;
-                //
-                //     console.log("111111");
-                //     console.log(value.body.location);
-                //     console.log(geo_val);
-                //     var gee = Object(value.body.location);
-                //     console.log(gee);
-                //     // geo_val = Object(value.body.location);
-                //     // data_val = value.body.data;
-                //     // this.str = value.body.s;
-                //     // console.log(this.str);
-                // }).catch(function (reason) {
-                //     console.log(reason);
-                // });
+                this.$http.get("http://localhost:5000/city_job_au",{emulateJSON:true}).then(function (value) {
+                    //this.arr = value.body.s;
+
+                    console.log("111111");
+                    console.log(value.body.location);
+                    console.log(geo_val);
+                    var gee = Object(value.body.location);
+                    console.log(gee);
+                    // geo_val = Object(value.body.location);
+                    // data_val = value.body.data;
+                    // this.str = value.body.s;
+                    // console.log(this.str);
+                }).catch(function (reason) {
+                    console.log(reason);
+                });
                 // if(this.)
                 if (this.citys.length == 0) {
                     $.ajax({
