@@ -15,9 +15,11 @@ def get_CITY_AU(city_name="all",limit=15):
     loc_dic={}
     data=[]
     for c in cu.fetchall():
-        loc_dic[c[0]]=(c[1],c[2])
+        loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
+    print({"location":loc_dic,"data":data})
     return {"location":loc_dic,"data":data}
+
 
 def get_CITY_UK(city_name="all",limit=15):
     if city_name=="all":
@@ -27,7 +29,7 @@ def get_CITY_UK(city_name="all",limit=15):
     loc_dic={}
     data=[]
     for c in cu.fetchall():
-        loc_dic[c[0]]=(c[1],c[2])
+        loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
     return {"location":loc_dic,"data":data}
 
@@ -68,13 +70,31 @@ def retrive_CITY_AU(name):
     for row in cu.execute(select_query).fetchall():
         city_au.append(row[0])
     x = len(name)
-    name = name[0].upper() + name[1:]
+    name = name[0].upper() + name[1:].lower()
     for i in city_au:
         if i[0:x] == name:
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
     return {"City":choosen_city}
+
+def retrive_CITY_UK(name):
+    select_query = "SELECT city FROM CITY_UK"
+    city_uk = []
+    choosen_city = []
+    for row in cu.execute(select_query).fetchall():
+        city_uk.append(row[0])
+    x = len(name)
+    name = name[0].upper() + name[1:].lower()
+    for i in city_uk:
+        if i[0:x] == name:
+            choosen_city.append(i)
+        if len(choosen_city)>5:
+            break
+    print(choosen_city)
+    return {"City":choosen_city}
+
+
 
 
 
