@@ -7,8 +7,11 @@ conn = sqlite3.connect(dbpath,check_same_thread=False)
 cu=conn.cursor()
 
 #{location: {'city1':[x,y], 'city2':[x,y],...}, data:[{name: 'city1', value:233}, {name: 'city2', value:500}]}
-def get_CITY_AU(limit=15):
-    cu.execute("select * from CITY_AU ORDER BY job_amount DESC limit "+str(limit))
+def get_CITY_AU(city_name="all",limit=15):
+    if city_name=="all":
+        cu.execute("select * from CITY_AU ORDER BY job_amount DESC limit "+str(limit))
+    else:
+        cu.execute(f'select * from CITY_AU where LOWER(city) = \'{city_name.lower()}\'')
     loc_dic={}
     data=[]
     for c in cu.fetchall():
@@ -16,8 +19,11 @@ def get_CITY_AU(limit=15):
         data.append({"name":c[0],"value":c[3]})
     return {"location":loc_dic,"data":data}
 
-def get_CITY_UK(limit=15):
-    cu.execute("select * from CITY_UK ORDER BY job_amount DESC limit "+str(limit))
+def get_CITY_UK(city_name="all",limit=15):
+    if city_name=="all":
+        cu.execute("select * from CITY_UK ORDER BY job_amount DESC limit "+str(limit))
+    else:
+        cu.execute(f'select * from CITY_UK where LOWER(city) = \'{city_name.lower()}\'')
     loc_dic={}
     data=[]
     for c in cu.fetchall():
@@ -70,7 +76,7 @@ def retrive_CITY_AU(name):
             break
     return {"City":choosen_city}
 
-retrive_CITY_AU("a")
+
 
 
 
