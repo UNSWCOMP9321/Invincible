@@ -45,6 +45,10 @@ def get_au(name):
 def get_uk(name):
     return jsonify(connectdata.get_CITY_UK(name)),200
 
+@app.route("/work_hours", methods=['GET'])
+def get_work_hours():
+    return jsonify(connectdata.get_WORK_HOURS()),200
+
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')

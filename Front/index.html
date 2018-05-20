@@ -911,12 +911,10 @@
         }
         var demo3 = {
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content" style="height: 100%">
+                    <div class="content" style="height: 100%; width: 120%">
                         <h1>Third Demo</h1>
-                        <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
-                        <div id="container" style="height: 600px"></div>
+                        <div id="container" style="height:600px;width:0px"></div>
                         <button @click="show_can">SHOW</button>
-                        
                     </div>
                   </transition>`,
             methods: {
@@ -927,22 +925,36 @@
                     option = null;
                     app.title = '正负条形图';
                     $.ajax({
-                        url: "http://localhost:5000/city_job_uk",
+                        url: "http://localhost:5000/work_hours",
                         type: "get",
                         dataType: "json",
                         async: false,
 
                         success: function (result) {
-                            console.log(11);
                             option = {
                                 tooltip: {
                                     trigger: 'axis',
                                     axisPointer: { // 坐标轴指示器，坐标轴触发有效
                                         type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                                    },
+                                    formatter:function(params){ // 改鼠标悬浮提示值格式
+                                        var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                                        let rez = params[0].name+"<br/>";
+                                        params.forEach(item => {
+                                            let num = 0;
+                                            if (item.value > 0){
+                                                num = item.value;
+                                            }else{
+                                                num = -item.value;
+                                            }
+                                            let strItem = colorSpan(item.color) + item.seriesName+ ' : ' +  num + " hrs"+ "<br/>";
+                                            rez += strItem;
+                                        });
+                                        return rez;
                                     }
                                 },
                                 legend: {
-                                    data: ['利润', '支出', '收入']
+                                    data: ['Male_AU', 'Male_UK', 'Female_AU','Female_UK']
                                 },
                                 grid: {
                                     left: '3%',
@@ -950,49 +962,86 @@
                                     bottom: '3%',
                                     containLabel: true
                                 },
-                                xAxis: [{
-                                    type: 'value'
+                                xAxis: [
+                                {
+                                    type : 'value',
+                                    axisLabel:{
+                                        formatter:function(value){
+                                            if (value<0) {
+                                                return -value;
+                                            }else{
+                                                return value;
+                                            }
+                                        }
+                                    },
+                                    name : 'hrs',
+                                    nameLocation : 'end'
+
                                 }],
                                 yAxis: [{
                                     type: 'category',
                                     axisTick: {
                                         show: false
                                     },
-                                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                    data: result.category
                                 }],
                                 series: [{
-                                        name: '利润',
+                                        name: 'Male_AU',
                                         type: 'bar',
+                                        stack: 'Male',
+                                        label: {
+                                            normal: {
+                                                show: true,
+                                                position: 'inside',
+                                                formatter: function (value) {
+                                                    if(value.data<0){
+                                                        return -value.data;
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        data: result.male_au
+                                    },
+                                    {
+                                        name: 'Male_UK',
+                                        type: 'bar',
+                                        stack: 'Male',
                                         label: {
                                             normal: {
                                                 show: true,
                                                 position: 'inside'
                                             }
                                         },
-                                        data: [200, 170, 240, 244, 200, 220, 210]
+                                        data: result.male_uk
                                     },
                                     {
-                                        name: '收入',
+                                        name: 'Female_AU',
                                         type: 'bar',
-                                        stack: '总量',
-                                        label: {
-                                            normal: {
-                                                show: true
-                                            }
-                                        },
-                                        data: [320, 302, 341, 374, 390, 450, 420]
-                                    },
-                                    {
-                                        name: '支出',
-                                        type: 'bar',
-                                        stack: '总量',
+                                        stack: 'Female',
                                         label: {
                                             normal: {
                                                 show: true,
-                                                position: 'left'
+                                                position: 'inside',
+                                                formatter: function (value) {
+                                                    if(value.data<0){
+                                                        return -value.data;
+                                                    }
+                                                }
                                             }
                                         },
-                                        data: [-120, -132, -101, -134, -190, -230, -210]
+                                        data: result.female_au
+                                    },
+                                    {
+                                        name: 'Female_UK',
+                                        type: 'bar',
+                                        stack: 'Female',
+                                        label: {
+                                            normal: {
+                                                show: true,
+                                                position: 'inside'
+                                            }
+                                        },
+                                        data: result.female_uk
                                     }
                                 ]
                             };
@@ -1001,105 +1050,6 @@
                             }
                         }
                     });
-
-
-
-                    // let myChart = document.getElementById('can_demo3');
-                    // if (myChart) {
-                    //     console.log('666');
-                    //     console.log(myChart);
-                    //     Chart.defaults.global.defaultFontFamily='lato';
-                    //     Chart.defaults.global.defaultFontSize=10;
-
-                    //     let massPopChart = new Chart(myChart.getContext('2d'), {
-                    //         type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-                    //         // data: {
-                    //         //     labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge', 'New Bedford'],
-                    //         //     datasets: [{
-                    //         //         label: 'Population',
-                    //         //         data: [1814, 6175, 4256, 8453, 2123, 7560],
-                    //         //         // backgroundColor:'green'
-                    //         //         backgroundColor:[
-                    //         //             'rgba(255, 99, 132, 0.2)',
-                    //         //             'rgba(54, 162, 235, 0.2)',
-                    //         //             'rgba(255, 206, 86, 0.2)',
-                    //         //             'rgba(75, 192, 192, 0.2)',
-                    //         //             'rgba(153, 102, 255, 0.2)',
-                    //         //             'rgba(255, 159, 64, 0.2)'],
-                    //         //         borderWidth:1,
-                    //         //         borderColor:'#777',
-                    //         //         hoverBorderWidth:3,
-                    //         //         hoverBorderColor:'#000'
-                    //         //     }],
-                    //         // },
-                    //         options: {
-                    //                     tooltip : {
-                    //                         trigger: 'axis',
-                    //                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                    //                             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                    //                         }
-                    //                     },
-                    //                     legend: {
-                    //                         data:['利润', '支出', '收入']
-                    //                     },
-                    //                     grid: {
-                    //                         left: '3%',
-                    //                         right: '4%',
-                    //                         bottom: '3%',
-                    //                         containLabel: true
-                    //                     },
-                    //                     xAxis : [
-                    //                         {
-                    //                             type : 'value'
-                    //                         }
-                    //                     ],
-                    //                     yAxis : [
-                    //                         {
-                    //                             type : 'category',
-                    //                             axisTick : {show: false},
-                    //                             data : ['周一','周二','周三','周四','周五','周六','周日']
-                    //                         }
-                    //                     ],
-                    //                     series : [
-                    //                         {
-                    //                             name:'利润',
-                    //                             type:'bar',
-                    //                             label: {
-                    //                                 normal: {
-                    //                                     show: true,
-                    //                                     position: 'inside'
-                    //                                 }
-                    //                             },
-                    //                             data:[200, 170, 240, 244, 200, 220, 210]
-                    //                         },
-                    //                         {
-                    //                             name:'收入',
-                    //                             type:'bar',
-                    //                             stack: '总量',
-                    //                             label: {
-                    //                                 normal: {
-                    //                                     show: true
-                    //                                 }
-                    //                             },
-                    //                             data:[320, 302, 341, 374, 390, 450, 420]
-                    //                         },
-                    //                         {
-                    //                             name:'支出',
-                    //                             type:'bar',
-                    //                             stack: '总量',
-                    //                             label: {
-                    //                                 normal: {
-                    //                                     show: true,
-                    //                                     position: 'left'
-                    //                                 }
-                    //                             },
-                    //                             data:[-120, -132, -101, -134, -190, -230, -210]
-                    //                         }
-                    //                     ]
-                    //                 }
-                    //     });
-                    // }
-
                 }
             }
         };

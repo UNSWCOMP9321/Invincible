@@ -51,17 +51,33 @@ def get_CATE_UK(limit=15):
         data.append({"name":c[0],"value":c[3]})
     return {"location":loc_dic,"data":data}
 
+
+#{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
 def get_WORK_HOURS():
-    cu.execute("select * from WORK_HOURS ")
-    loc_dic={}
+    cu.execute("select * from WORK_HOURS where sex != 'Total'")
     data=[]
     for c in cu.fetchall():
-
-        loc_dic[c[0]]=(c[2],c[1])
-
-        data.append({"name":c[0],"value":c[3]})
-
-    return {"location":loc_dic,"data":data}
+        data.append(c)
+    data = sorted(data, key = lambda item:item[2])
+    category=[]
+    male_au=[]
+    female_au=[]
+    male_uk=[]
+    female_uk=[]
+    for t in data:
+        if t[2] not in category:
+            category.append(t[2])
+        if t[0] == "AU":
+            if t[1] == "Female":
+                female_au.append(-t[3])
+            else:
+                male_au.append(-t[3])
+        else:
+            if t[1] == "Female":
+                female_uk.append(t[3])
+            else:
+                male_uk.append(t[3])
+    return {"category":category,"male_au":male_au,"female_au":female_au,"male_uk":male_uk,"female_uk":female_uk}
 
 def retrive_CITY_AU(name):
     select_query = "SELECT city FROM CITY_AU"
@@ -93,8 +109,6 @@ def retrive_CITY_UK(name):
             break
     print(choosen_city)
     return {"City":choosen_city}
-
-
 
 
 
