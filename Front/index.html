@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,59 +20,68 @@
 <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>-->
 <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>-->
 <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
+
 <body>
-<div id="app" @mousemove="updateXY">
+    <div id="app" @mousemove="updateXY">
 
-    <div id="header">
-        <div id="header_content" @click="menu_click">
+        <div id="header">
+            <div id="header_content" @click="menu_click">
 
-        </div>
-        <!--<div id="header_bar">-->
+            </div>
+            <!--<div id="header_bar">-->
             <!--<ul>-->
-                <!--<li><router-link to="/main">Main</router-link></li>-->
-                <!--<li><router-link to="/demo1">Demo1</router-link></li>-->
-                <!--<li><router-link to="/demo2">Demo2</router-link></li>-->
-                <!--<li><router-link to="/demo3">Demo3</router-link></li>-->
+            <!--<li><router-link to="/main">Main</router-link></li>-->
+            <!--<li><router-link to="/demo1">Demo1</router-link></li>-->
+            <!--<li><router-link to="/demo2">Demo2</router-link></li>-->
+            <!--<li><router-link to="/demo3">Demo3</router-link></li>-->
             <!--</ul>-->
-        <!--</div>-->
-    </div>
-
-    <div class="content" @click="hide_menu">
-        <router-view></router-view>
-    </div>
-    <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
-        <!--<div id="nav_bar" v-show="mouse_X < 100 || menu_show">-->
-        <div id="nav_bar" v-show=" menu_show">
-            <ul>
-                <li><router-link to="/main">Main</router-link></li>
-                <li><router-link to="/demo1">Demo1</router-link></li>
-                <li><router-link to="/demo2">Demo2</router-link></li>
-                <li><router-link to="/demo3">Demo3</router-link></li>
-            </ul>
+            <!--</div>-->
         </div>
-    </transition>
 
-    <div>{{mouse_X}}, {{mouse_Y}}</div>
-    <button @click="testb()">TEST</button>
-    <!--<div id="picture" style="width: 600px;height: 400px"></div>-->
+        <div class="content" @click="hide_menu">
+            <router-view></router-view>
+        </div>
+        <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
+            <!--<div id="nav_bar" v-show="mouse_X < 100 || menu_show">-->
+            <div id="nav_bar" v-show=" menu_show">
+                <ul>
+                    <li>
+                        <router-link to="/main">Main</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/demo1">Demo1</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/demo2">Demo2</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/demo3">Demo3</router-link>
+                    </li>
+                </ul>
+            </div>
+        </transition>
 
-    <br>
-    <hr>
-    <hr>
-    <!--<canvas id="can_demo2"></canvas>-->
-    <!--<canvas id="can_demo2"></canvas>-->
-</div>
+        <div>{{mouse_X}}, {{mouse_Y}}</div>
+        <button @click="testb()">TEST</button>
+        <!--<div id="picture" style="width: 600px;height: 400px"></div>-->
 
-<script src="vue.js"></script>
-<script src="vue-router.js"></script>
-<script src="vue-resource.js"></script>
-<script src="jquery-3.2.1.js"></script>
-<script>
-    $.ajaxSetup({
-        async: false
-    });
-    var main = {
-        template:`
+        <br>
+        <hr>
+        <hr>
+        <!--<canvas id="can_demo2"></canvas>-->
+        <!--<canvas id="can_demo2"></canvas>-->
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script src="vue-resource.js"></script>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        $.ajaxSetup({
+            async: false
+        });
+        var main = {
+            template: `
 <div id="main">
     <ul>
     <li>
@@ -95,29 +105,40 @@
     </ul>
 </div>
 `
-    };
+        };
 
-    var demo1 = {
-        data:function () {
-            return {
-                str:"",
-                map_color:['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
-                map_value:[{name: 'Alabama', value: 50},
-                    // {name: 'Alaska', value: 731449},
-                    {name: 'Arizona', value: 4}],
-                locations:{'aa':[145.52,-24.35],
-                    'bb':[150,-33.65],
-                    'cc':[136.37,-31.13],
-                    'Sydney':[136.37,-31.13],
-                    'dd':[150.65,-28.01]},
-                data_val:[],
-                city_name:"",
-                citys:[],
-                rec_citys:[],
-                status:"au"
-            };
-        },
-        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+        var demo1 = {
+            data: function () {
+                return {
+                    str: "",
+                    map_color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090',
+                        '#fdae61', '#f46d43', '#d73027', '#a50026'
+                    ],
+                    map_value: [{
+                            name: 'Alabama',
+                            value: 50
+                        },
+                        // {name: 'Alaska', value: 731449},
+                        {
+                            name: 'Arizona',
+                            value: 4
+                        }
+                    ],
+                    locations: {
+                        'aa': [145.52, -24.35],
+                        'bb': [150, -33.65],
+                        'cc': [136.37, -31.13],
+                        'Sydney': [136.37, -31.13],
+                        'dd': [150.65, -28.01]
+                    },
+                    data_val: [],
+                    city_name: "",
+                    citys: [],
+                    rec_citys: [],
+                    status: "au"
+                };
+            },
+            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
                         <h1>First Demo</h1>
                         <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name">
@@ -144,126 +165,127 @@
                         <div>{{str}}</div>
                     </div>
                   </transition>`,
-        methods:{
-            test_input:function () {
-                console.log(this.city_name);
-            },
-            testb:function () {
-                this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
-                    params:{
-                        wd:"a"
-                    },
-                    jsonp:"cb"
-                }).then(function (value) {
-                    //this.arr = value.body.s;
-                    console.log(value);
-                    this.str = value.body.s;
-                    console.log(this.str);
-                })
-            },
-            city_push:function () {
-                console.log(this.citys);
-                if (this.status == "au") {
-                    this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
-                        console.log(value.body);
-                        console.log("####");
-                        console.log(value.body.data[0].name);
-                        console.log(this.citys);
-                        let attr = value.body.data[0].name
-                        console.log(value.body.location[attr]);
-                        this.citys.push(Object(value.body.data[0]));
-                        this.locations[value.body.data[0].name] = value.body.location[attr];
-                        console.log(this.citys);
-                        console.log("----");
-                        console.log(this.locations);
+            methods: {
+                test_input: function () {
+                    console.log(this.city_name);
+                },
+                testb: function () {
+                    this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", {
+                        params: {
+                            wd: "a"
+                        },
+                        jsonp: "cb"
+                    }).then(function (value) {
+                        //this.arr = value.body.s;
+                        console.log(value);
+                        this.str = value.body.s;
+                        console.log(this.str);
+                    })
+                },
+                city_push: function () {
+                    console.log(this.citys);
+                    if (this.status == "au") {
+                        this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
+                            console.log(value.body);
+                            console.log("####");
+                            console.log(value.body.data[0].name);
+                            console.log(this.citys);
+                            let attr = value.body.data[0].name
+                            console.log(value.body.location[attr]);
+                            this.citys.push(Object(value.body.data[0]));
+                            this.locations[value.body.data[0].name] = value.body.location[attr];
+                            console.log(this.citys);
+                            console.log("----");
+                            console.log(this.locations);
+                            this.show_au();
+                        });
+                    } else {
+                        this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {
+                            console.log(value.body);
+                            console.log("####");
+                            console.log(value.body.data[0].name);
+                            console.log(this.citys);
+                            let attr = value.body.data[0].name
+                            console.log(value.body.location[attr]);
+                            this.citys.push(Object(value.body.data[0]));
+                            this.locations[value.body.data[0].name] = value.body.location[attr];
+                            console.log(this.citys);
+                            console.log("----");
+                            console.log(this.locations);
+                            this.show_map();
+                        });
+                    }
+                },
+                delete_city: function (e) {
+                    console.log(e.target.innerText);
+                    console.log(this.citys);
+                    let city_name = e.target.innerText.replace(/(^\s*)|(\s*$)/g, "");
+                    console.log(city_name == "Northam");
+                    for (let i in this.citys) {
+                        if (this.citys[i].name.replace(/(^\s*)|(\s*$)/g, "") == city_name) {
+                            console.log('44444');
+                            this.citys.splice(i, 1);
+                        }
+                    }
+                    console.log(this.status);
+                    if (this.status == "au") {
+
                         this.show_au();
-                    });
-                }else{
-                    this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {
-                        console.log(value.body);
-                        console.log("####");
-                        console.log(value.body.data[0].name);
-                        console.log(this.citys);
-                        let attr = value.body.data[0].name
-                        console.log(value.body.location[attr]);
-                        this.citys.push(Object(value.body.data[0]));
-                        this.locations[value.body.data[0].name] = value.body.location[attr];
-                        console.log(this.citys);
-                        console.log("----");
-                        console.log(this.locations);
+                    } else {
                         this.show_map();
-                    });
-                }
-            },
-            delete_city:function (e) {
-                console.log(e.target.innerText);
-                console.log(this.citys);
-                let city_name = e.target.innerText.replace(/(^\s*)|(\s*$)/g, "");
-                console.log(city_name == "Northam");
-                for (let i in this.citys){
-                    if (this.citys[i].name.replace(/(^\s*)|(\s*$)/g, "") == city_name){
-                        console.log('44444');
-                        this.citys.splice(i,1);
                     }
-                }
-                console.log(this.status);
-                if (this.status == "au") {
+                },
+                delete_city_data: function (e) {
 
-                    this.show_au();
-                }else{
-                    this.show_map();
-                }
-            },
-            delete_city_data:function (e) {
-
-                for (let i in this.data_val){
-                    if (this.data_val[i].name == e.target.innerText){
-                        console.log('44444');
-                        this.data_val.splice(i,1);
+                    for (let i in this.data_val) {
+                        if (this.data_val[i].name == e.target.innerText) {
+                            console.log('44444');
+                            this.data_val.splice(i, 1);
+                        }
                     }
-                }
-            },
-            get_rec:function () {
-                console.log("222");
-                if (this.status == "au") {
-                    this.$http.get("http://localhost:5000/city_job_au/" + this.city_name).then(function (value) {
-                        console.log(value.body.City);
-                        this.rec_citys = value.body.City;
-                    });
-                    $("#rec_city").show();
-                }
-                else{
-                    this.$http.get("http://localhost:5000/city_job_uk/" + this.city_name).then(function (value) {
-                        console.log(value.body.City);
-                        this.rec_citys = value.body.City;
-                    });
-                    $("#rec_city").show();
-                }
+                },
+                get_rec: function () {
+                    console.log("222");
+                    if (this.status == "au") {
+                        this.$http.get("http://localhost:5000/city_job_au/" + this.city_name).then(function (
+                            value) {
+                            console.log(value.body.City);
+                            this.rec_citys = value.body.City;
+                        });
+                        $("#rec_city").show();
+                    } else {
+                        this.$http.get("http://localhost:5000/city_job_uk/" + this.city_name).then(function (
+                            value) {
+                            console.log(value.body.City);
+                            this.rec_citys = value.body.City;
+                        });
+                        $("#rec_city").show();
+                    }
 
-            },
-            clear_all:function () {
-                this.citys = [];
-                if (this.status == "au") {
-                    this.show_au();
-                }else{
-                    this.show_map();
-                }
-            },
-            choose_city:function (e) {
-              console.log(e.target.innerText);
-              this.city_name = e.target.innerText;
-              console.log("5555533");
-              $("#rec_city").hide();
+                },
+                clear_all: function () {
+                    this.citys = [];
+                    if (this.status == "au") {
+                        this.show_au();
+                    } else {
+                        this.show_map();
+                    }
+                },
+                choose_city: function (e) {
+                    console.log(e.target.innerText);
+                    this.city_name = e.target.innerText;
+                    console.log("5555533");
+                    $("#rec_city").hide();
 
-            },
-            // rec_input_hide:function () {
-            //     this.choose_city(e);
-            //     $("#rec_city").hide();
-            //     console.log("5555");
-            //
-            // },
-            show_au_example:function () {
-                // if (this.citys.length == 0) {
+                },
+                // rec_input_hide:function () {
+                //     this.choose_city(e);
+                //     $("#rec_city").hide();
+                //     console.log("5555");
+                //
+                // },
+                show_au_example: function () {
+                    // if (this.citys.length == 0) {
                     this.status = "au";
                     $.ajax({
                         url: "http://localhost:5000/city_job_au",
@@ -300,334 +322,108 @@
                     this.citys = data_val;
                     console.log("################");
                     this.show_au();
-            },
-            show_uk_example:function () {
-                // if (this.citys.length == 0) {
-                this.status = "uk";
-                $.ajax({
-                    url: "http://localhost:5000/city_job_uk",
-                    type: "get",
-                    dataType: "json",
-                    async: false,
+                },
+                show_uk_example: function () {
+                    // if (this.citys.length == 0) {
+                    this.status = "uk";
+                    $.ajax({
+                        url: "http://localhost:5000/city_job_uk",
+                        type: "get",
+                        dataType: "json",
+                        async: false,
 
-                    success: function (result) {
-                        // console.log(result.data);
-                        console.log(result);
-                        var rec_data = [];
-                        console.log(result.location);
-                        for (let i = 0; i < 2; i++) {
-                            rec_data.push(Object(result.location[i]));
-                            console.log(typeof result.location[i]);
+                        success: function (result) {
+                            // console.log(result.data);
+                            console.log(result);
+                            var rec_data = [];
+                            console.log(result.location);
+                            for (let i = 0; i < 2; i++) {
+                                rec_data.push(Object(result.location[i]));
+                                console.log(typeof result.location[i]);
+                            }
+
+                            console.log('------2222----');
+                            console.log(rec_data);
+                            // console.log(data_val);
+
+                            data_val = result.data;
+                            geo_val = result.location;
+                            console.log(geo_val);
+                            console.log('----------');
+                            // console.log(data_val);
+                            // console.log(result.location);
+                            // console.log(geo_val);
+
+
                         }
-
-                        console.log('------2222----');
-                        console.log(rec_data);
-                        // console.log(data_val);
-
-                        data_val = result.data;
-                        geo_val = result.location;
-                        console.log(geo_val);
-                        console.log('----------');
-                        // console.log(data_val);
-                        // console.log(result.location);
-                        // console.log(geo_val);
-
-
-                    }
-                });
-                this.locations = geo_val;
-                this.citys = data_val;
-                this.show_map();
-            },
-            show_map:function () {
-                console.log(this.map_value);
-                map_value = this.map_value;
-                var map_color = this.map_color;
-                var dom = document.getElementById("picture_2");
-
-                $("#picture_2").show();
-                $("#picture").hide();
-                var myChart = echarts.init(dom);
-                var app = {};
-                option = null;
-                myChart.showLoading();
-
-                // var geo_val = this.locations;
-                console.log(this.locations);
-                var geo_val;
-                // var data_val = this.data_val;
-                var data_val = "222";
-                console.log('-----');
-                // console.log(geo_val);
-                // console.log(data_val)
-                console.log('------$$$$$$$-------');
-                console.log(this.locations);
-                this.$http.get("http://localhost:5000/city_job_uk",{emulateJSON:true}).then(function (value) {
-                    //this.arr = value.body.s;
-
-                    console.log("111111");
-                    console.log(value.body.location);
-                    console.log(geo_val);
-                    var gee = Object(value.body.location);
-                    console.log(gee);
-                    // geo_val = Object(value.body.location);
-                    // data_val = value.body.data;
-                    // this.str = value.body.s;
-                    // console.log(this.str);
-                }).catch(function (reason) {
-                    console.log(reason);
-                });
-                data_val = this.citys;
-                geo_val = this.locations;
-                // }
-                console.log('------$$$$$$$-------');
-
-                console.log(data_val);
-
-
-                $.get('map/England.json', function (geoJson) {
-
-                    myChart.hideLoading();
-
-                    echarts.registerMap('England', geoJson);
-                    geoCoordMap = geo_val;
-                    data = data_val;
-                    var maxSize4Pin = 100,
-                        minSize4Pin = 20;
-                    var max = 10000,
-                        min = 100; // todo
-                    var convertData = function (data) {
-                        var res = [];
-                        console.log(data);
-                        for (var i = 0; i < data.length; i++) {
-                            var geoCoord = geoCoordMap[data[i].name];
-                            if (geoCoord) {
-                                res.push({
-                                    name: data[i].name,
-                                    value: geoCoord.concat(data[i].value)
-                                });
-                            }
-                        }
-                        return res;
-                    };
-                    console.log(convertData(data));
-                    myChart.setOption(option = {
-                        title: {
-                            text: 'England Job distribution',
-                            subtext: '',
-                            sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
-                        },
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: function(params) {
-                                if (typeof(params.value)[2] == "undefined") {
-                                    return params.name + ' : ' + params.value;
-                                } else {
-                                    return params.name + ' : ' + params.value[2];
-                                }
-                            }
-                        },
-
-                        toolbox: {
-                            show: true,
-                            orient: 'vertical',
-                            left: 'right',
-                            top: 'center',
-                            feature: {
-                                dataView: {readOnly: false},
-                                restore: {},
-                                saveAsImage: {}
-                            }
-                        },
-                        visualMap: {
-                            min: 1,
-                            max: 100,
-                            type:"continuous",
-                            text:['High','Low'],
-                            realtime: false,
-                            calculable: true,
-                            inRange: {
-                                color: ['lightskyblue','yellow', 'orangered']
-                            }
-                        },
-                        geo: {
-                            show: true,
-                            map:"England",
-                            mapType: 'England', // 自定义扩展图表类型
-                            zoom:1.8,
-                            scaleLimit:{min:0.8,max:1.5},
-                            label: {
-                                normal: {
-                                    show: false
-                                },
-                                emphasis: {
-                                    show: false,
-                                }
-                            },
-                            roam: true,
-                            itemStyle: {
-                                normal: {
-                                    areaColor: '#bcb7b5',
-                                    borderColor: '#3B5077',
-                                },
-                                emphasis: {
-                                    areaColor: '#2B91B7',
-                                }
-                            }
-                        },
-                        series: [
-                            {
-                                name: 'credit_pm2.5',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                data: convertData(data),
-                                symbolSize: function(val) {
-                                    return val[2] / 10000;
-                                },
-                                label: {
-                                    normal: {
-                                        formatter: '{b}',
-                                        position: 'right',
-                                        show: true
-                                    },
-                                    emphasis: {
-                                        show: true
-                                    }
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#05C3F9'
-                                    }
-                                }
-                            },
-                            // {
-                            //     type: 'map',
-                            //     map: 'England',
-                            //     geoIndex: 0,
-                            //     zoom:3,
-                            //     aspectScale: 0.75, //长宽比
-                            //     showLegendSymbol: false, // 存在legend时显示
-                            //     label: {
-                            //         normal: {
-                            //             show: false
-                            //         },
-                            //         emphasis: {
-                            //             show: false,
-                            //             textStyle: {
-                            //                 color: '#fff'
-                            //             }
-                            //         }
-                            //     },
-                            //     roam: true,
-                            //     itemStyle: {
-                            //         normal: {
-                            //             areaColor: '#031525',
-                            //             borderColor: '#3B5077',
-                            //         },
-                            //         emphasis: {
-                            //             areaColor: '#2B91B7'
-                            //         }
-                            //     },
-                            //     animation: false,
-                            //     data: data
-                            // },
-                            {
-                                name: '点',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                symbol: 'pin',
-                                symbolSize: function(val) {
-                                    var a = (maxSize4Pin - minSize4Pin) / (max - min);
-                                    var b = minSize4Pin - a * min;
-                                    b = maxSize4Pin - a * max;
-                                    return a * val[2] + b;
-                                },
-                                label: {
-                                    normal: {
-                                        show: true,
-                                        formatter:function (val) {
-                                            // console.log(val.value);
-                                            return val.value[2];
-                                        },
-                                        textStyle: {
-                                            color: '#fff',
-                                            fontSize: 9,
-                                        }
-                                    }
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#F62157', //标志颜色
-                                    }
-                                },
-                                zlevel: 6,
-                                data: convertData(data),
-                            }
-                        ]
                     });
-                });
+                    this.locations = geo_val;
+                    this.citys = data_val;
+                    this.show_map();
+                },
+                show_map: function () {
+                    console.log(this.map_value);
+                    map_value = this.map_value;
+                    var map_color = this.map_color;
+                    var dom = document.getElementById("picture_2");
 
-            },
-            show_au:function () {
-                console.log(this.map_value);
-                map_value = this.map_value;
-                var map_color = this.map_color;
-                var dom = document.getElementById("picture");
-                $("#picture").show();
-                $("#picture_2").hide();
-                var myChart = echarts.init(dom);
-                var app = {};
-                option = null;
-                myChart.showLoading();
+                    $("#picture_2").show();
+                    $("#picture").hide();
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    myChart.showLoading();
 
-                // var geo_val = this.locations;
-                console.log(this.locations);
-                var geo_val;
-                // var data_val = this.data_val;
-                var data_val = "222";
-                console.log('-----');
-                // console.log(geo_val);
-                // console.log(data_val)
-                console.log('------$$$$$$$-------');
-                console.log(this.locations);
-                this.$http.get("http://localhost:5000/city_job_au",{emulateJSON:true}).then(function (value) {
-                    //this.arr = value.body.s;
+                    // var geo_val = this.locations;
+                    console.log(this.locations);
+                    var geo_val;
+                    // var data_val = this.data_val;
+                    var data_val = "222";
+                    console.log('-----');
+                    // console.log(geo_val);
+                    // console.log(data_val)
+                    console.log('------$$$$$$$-------');
+                    console.log(this.locations);
+                    this.$http.get("http://localhost:5000/city_job_uk", {
+                        emulateJSON: true
+                    }).then(function (value) {
+                        //this.arr = value.body.s;
 
-                    console.log("111111");
-                    console.log(value.body.location);
-                    console.log(geo_val);
-                    var gee = Object(value.body.location);
-                    console.log(gee);
-                    // geo_val = Object(value.body.location);
-                    // data_val = value.body.data;
-                    // this.str = value.body.s;
-                    // console.log(this.str);
-                }).catch(function (reason) {
-                    console.log(reason);
-                });
-                data_val = this.citys;
-                geo_val = this.locations;
-                // }
-                console.log('------$$$$$$$-------');
+                        console.log("111111");
+                        console.log(value.body.location);
+                        console.log(geo_val);
+                        var gee = Object(value.body.location);
+                        console.log(gee);
+                        // geo_val = Object(value.body.location);
+                        // data_val = value.body.data;
+                        // this.str = value.body.s;
+                        // console.log(this.str);
+                    }).catch(function (reason) {
+                        console.log(reason);
+                    });
+                    data_val = this.citys;
+                    geo_val = this.locations;
+                    // }
+                    console.log('------$$$$$$$-------');
 
-                console.log(data_val);
+                    console.log(data_val);
 
 
-                $.get('map/Australia.json', function (geoJson) {
+                    $.get('map/England.json', function (geoJson) {
 
-                    myChart.hideLoading();
+                        myChart.hideLoading();
 
-                    echarts.registerMap('Australia', geoJson);
-                    geoCoordMap = geo_val;
-                    data = data_val;
-                    var maxSize4Pin = 100,
-                        minSize4Pin = 20;
-                    var max = 10000,
-                        min = 100; // todo
-                    var convertData = function (data) {
-                        var res = [];
-                        console.log(data);
-                        for (var i = 0; i < data.length; i++) {
+                        echarts.registerMap('England', geoJson);
+                        geoCoordMap = geo_val;
+                        data = data_val;
+                        var maxSize4Pin = 100,
+                            minSize4Pin = 20;
+                        var max = 10000,
+                            min = 100; // todo
+                        var convertData = function (data) {
+                            var res = [];
+                            console.log(data);
+                            for (var i = 0; i < data.length; i++) {
                                 var geoCoord = geoCoordMap[data[i].name];
                                 if (geoCoord) {
                                     res.push({
@@ -635,172 +431,412 @@
                                         value: geoCoord.concat(data[i].value)
                                     });
                                 }
-                        }
-                        return res;
-                    };
-                    console.log(convertData(data));
-                    myChart.setOption(option = {
-                        title: {
-                            text: 'Australis Job distribution',
-                            subtext: '',
-                            sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
-                        },
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: function(params) {
-                                if (typeof(params.value)[2] == "undefined") {
-                                    return params.name + ' : ' + params.value;
-                                } else {
-                                    return params.name + ' : ' + params.value[2];
-                                }
                             }
-                        },
+                            return res;
+                        };
+                        console.log(convertData(data));
+                        myChart.setOption(option = {
+                            title: {
+                                text: 'England Job distribution',
+                                subtext: '',
+                                sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: function (params) {
+                                    if (typeof (params.value)[2] == "undefined") {
+                                        return params.name + ' : ' + params.value;
+                                    } else {
+                                        return params.name + ' : ' + params.value[2];
+                                    }
+                                }
+                            },
 
-                        toolbox: {
-                            show: true,
-                            orient: 'vertical',
-                            left: 'right',
-                            top: 'center',
-                            feature: {
-                                dataView: {readOnly: false},
-                                restore: {},
-                                saveAsImage: {}
-                            }
-                        },
-                        visualMap: {
-                            min: 1,
-                            max: 100,
-                            type:"continuous",
-                            text:['High','Low'],
-                            realtime: false,
-                            calculable: true,
-                            inRange: {
-                                color: ['lightskyblue','yellow', 'orangered']
-                            }
-                        },
-                        geo: {
-                            show: true,
-                            map:"Australia",
-                            mapType: 'Australia', // 自定义扩展图表类型
-                            zoom:1.8,
-                            scaleLimit:{min:0.8,max:1.8},
-                            label: {
-                                normal: {
-                                    show: false
-                                },
-                                emphasis: {
-                                    show: false,
-                                }
-                            },
-                            roam: true,
-                            itemStyle: {
-                                normal: {
-                                    areaColor: '#bcb7b5',
-                                    borderColor: '#3B5077',
-                                },
-                                emphasis: {
-                                    areaColor: '#2B91B7',
-                                }
-                            }
-                        },
-                        series: [
-                            {
-                                name: 'credit_pm2.5',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                data: convertData(data),
-                                symbolSize: function(val) {
-                                    return val[2] / 10000;
-                                },
-                                label: {
-                                    normal: {
-                                        formatter: '{b}',
-                                        position: 'right',
-                                        show: true
+                            toolbox: {
+                                show: true,
+                                orient: 'vertical',
+                                left: 'right',
+                                top: 'center',
+                                feature: {
+                                    dataView: {
+                                        readOnly: false
                                     },
-                                    emphasis: {
-                                        show: true
-                                    }
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#05C3F9'
-                                    }
+                                    restore: {},
+                                    saveAsImage: {}
                                 }
                             },
-                            {
-                                type: 'map',
-                                map: 'Australia',
-                                geoIndex: 0,
-                                zoom:3,
-                                aspectScale: 0.75, //长宽比
-                                showLegendSymbol: false, // 存在legend时显示
+                            visualMap: {
+                                min: 1,
+                                max: 100,
+                                type: "continuous",
+                                text: ['High', 'Low'],
+                                realtime: false,
+                                calculable: true,
+                                inRange: {
+                                    color: ['lightskyblue', 'yellow', 'orangered']
+                                }
+                            },
+                            geo: {
+                                show: true,
+                                map: "England",
+                                mapType: 'England', // 自定义扩展图表类型
+                                zoom: 1.8,
+                                scaleLimit: {
+                                    min: 0.8,
+                                    max: 1.5
+                                },
                                 label: {
                                     normal: {
                                         show: false
                                     },
                                     emphasis: {
                                         show: false,
-                                        textStyle: {
-                                            color: '#fff'
-                                        }
                                     }
                                 },
                                 roam: true,
                                 itemStyle: {
                                     normal: {
-                                        areaColor: '#031525',
+                                        areaColor: '#bcb7b5',
                                         borderColor: '#3B5077',
                                     },
                                     emphasis: {
-                                        areaColor: '#2B91B7'
+                                        areaColor: '#2B91B7',
                                     }
-                                },
-                                animation: false,
-                                data: data
+                                }
                             },
-                            {
-                                name: '点',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                symbol: 'pin',
-                                symbolSize: function(val) {
-                                    var a = (maxSize4Pin - minSize4Pin) / (max - min);
-                                    var b = minSize4Pin - a * min;
-                                    b = maxSize4Pin - a * max;
-                                    return a * val[2] + b;
-                                },
-                                label: {
-                                    normal: {
-                                        show: true,
-                                        formatter:function (val) {
-                                            // console.log(val.value);
-                                            return val.value[2];
+                            series: [{
+                                    name: 'credit_pm2.5',
+                                    type: 'scatter',
+                                    coordinateSystem: 'geo',
+                                    data: convertData(data),
+                                    symbolSize: function (val) {
+                                        return val[2] / 10000;
+                                    },
+                                    label: {
+                                        normal: {
+                                            formatter: '{b}',
+                                            position: 'right',
+                                            show: true
                                         },
-                                        textStyle: {
-                                            color: '#fff',
-                                            fontSize: 9,
+                                        emphasis: {
+                                            show: true
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#05C3F9'
                                         }
                                     }
                                 },
-                                itemStyle: {
+                                // {
+                                //     type: 'map',
+                                //     map: 'England',
+                                //     geoIndex: 0,
+                                //     zoom:3,
+                                //     aspectScale: 0.75, //长宽比
+                                //     showLegendSymbol: false, // 存在legend时显示
+                                //     label: {
+                                //         normal: {
+                                //             show: false
+                                //         },
+                                //         emphasis: {
+                                //             show: false,
+                                //             textStyle: {
+                                //                 color: '#fff'
+                                //             }
+                                //         }
+                                //     },
+                                //     roam: true,
+                                //     itemStyle: {
+                                //         normal: {
+                                //             areaColor: '#031525',
+                                //             borderColor: '#3B5077',
+                                //         },
+                                //         emphasis: {
+                                //             areaColor: '#2B91B7'
+                                //         }
+                                //     },
+                                //     animation: false,
+                                //     data: data
+                                // },
+                                {
+                                    name: '点',
+                                    type: 'scatter',
+                                    coordinateSystem: 'geo',
+                                    symbol: 'pin',
+                                    symbolSize: function (val) {
+                                        var a = (maxSize4Pin - minSize4Pin) / (max -
+                                            min);
+                                        var b = minSize4Pin - a * min;
+                                        b = maxSize4Pin - a * max;
+                                        return a * val[2] + b;
+                                    },
+                                    label: {
+                                        normal: {
+                                            show: true,
+                                            formatter: function (val) {
+                                                // console.log(val.value);
+                                                return val.value[2];
+                                            },
+                                            textStyle: {
+                                                color: '#fff',
+                                                fontSize: 9,
+                                            }
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#F62157', //标志颜色
+                                        }
+                                    },
+                                    zlevel: 6,
+                                    data: convertData(data),
+                                }
+                            ]
+                        });
+                    });
+
+                },
+                show_au: function () {
+                    console.log(this.map_value);
+                    map_value = this.map_value;
+                    var map_color = this.map_color;
+                    var dom = document.getElementById("picture");
+                    $("#picture").show();
+                    $("#picture_2").hide();
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    myChart.showLoading();
+
+                    // var geo_val = this.locations;
+                    console.log(this.locations);
+                    var geo_val;
+                    // var data_val = this.data_val;
+                    var data_val = "222";
+                    console.log('-----');
+                    // console.log(geo_val);
+                    // console.log(data_val)
+                    console.log('------$$$$$$$-------');
+                    console.log(this.locations);
+                    this.$http.get("http://localhost:5000/city_job_au", {
+                        emulateJSON: true
+                    }).then(function (value) {
+                        //this.arr = value.body.s;
+
+                        console.log("111111");
+                        console.log(value.body.location);
+                        console.log(geo_val);
+                        var gee = Object(value.body.location);
+                        console.log(gee);
+                        // geo_val = Object(value.body.location);
+                        // data_val = value.body.data;
+                        // this.str = value.body.s;
+                        // console.log(this.str);
+                    }).catch(function (reason) {
+                        console.log(reason);
+                    });
+                    data_val = this.citys;
+                    geo_val = this.locations;
+                    // }
+                    console.log('------$$$$$$$-------');
+
+                    console.log(data_val);
+
+
+                    $.get('map/Australia.json', function (geoJson) {
+
+                        myChart.hideLoading();
+
+                        echarts.registerMap('Australia', geoJson);
+                        geoCoordMap = geo_val;
+                        data = data_val;
+                        var maxSize4Pin = 100,
+                            minSize4Pin = 20;
+                        var max = 10000,
+                            min = 100; // todo
+                        var convertData = function (data) {
+                            var res = [];
+                            console.log(data);
+                            for (var i = 0; i < data.length; i++) {
+                                var geoCoord = geoCoordMap[data[i].name];
+                                if (geoCoord) {
+                                    res.push({
+                                        name: data[i].name,
+                                        value: geoCoord.concat(data[i].value)
+                                    });
+                                }
+                            }
+                            return res;
+                        };
+                        console.log(convertData(data));
+                        myChart.setOption(option = {
+                            title: {
+                                text: 'Australis Job distribution',
+                                subtext: '',
+                                sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: function (params) {
+                                    if (typeof (params.value)[2] == "undefined") {
+                                        return params.name + ' : ' + params.value;
+                                    } else {
+                                        return params.name + ' : ' + params.value[2];
+                                    }
+                                }
+                            },
+
+                            toolbox: {
+                                show: true,
+                                orient: 'vertical',
+                                left: 'right',
+                                top: 'center',
+                                feature: {
+                                    dataView: {
+                                        readOnly: false
+                                    },
+                                    restore: {},
+                                    saveAsImage: {}
+                                }
+                            },
+                            visualMap: {
+                                min: 1,
+                                max: 100,
+                                type: "continuous",
+                                text: ['High', 'Low'],
+                                realtime: false,
+                                calculable: true,
+                                inRange: {
+                                    color: ['lightskyblue', 'yellow', 'orangered']
+                                }
+                            },
+                            geo: {
+                                show: true,
+                                map: "Australia",
+                                mapType: 'Australia', // 自定义扩展图表类型
+                                zoom: 1.8,
+                                scaleLimit: {
+                                    min: 0.8,
+                                    max: 1.8
+                                },
+                                label: {
                                     normal: {
-                                        color: '#F62157', //标志颜色
+                                        show: false
+                                    },
+                                    emphasis: {
+                                        show: false,
                                     }
                                 },
-                                zlevel: 6,
-                                data: convertData(data),
-                            }
-                        ]
+                                roam: true,
+                                itemStyle: {
+                                    normal: {
+                                        areaColor: '#bcb7b5',
+                                        borderColor: '#3B5077',
+                                    },
+                                    emphasis: {
+                                        areaColor: '#2B91B7',
+                                    }
+                                }
+                            },
+                            series: [{
+                                    name: 'credit_pm2.5',
+                                    type: 'scatter',
+                                    coordinateSystem: 'geo',
+                                    data: convertData(data),
+                                    symbolSize: function (val) {
+                                        return val[2] / 10000;
+                                    },
+                                    label: {
+                                        normal: {
+                                            formatter: '{b}',
+                                            position: 'right',
+                                            show: true
+                                        },
+                                        emphasis: {
+                                            show: true
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#05C3F9'
+                                        }
+                                    }
+                                },
+                                {
+                                    type: 'map',
+                                    map: 'Australia',
+                                    geoIndex: 0,
+                                    zoom: 3,
+                                    aspectScale: 0.75, //长宽比
+                                    showLegendSymbol: false, // 存在legend时显示
+                                    label: {
+                                        normal: {
+                                            show: false
+                                        },
+                                        emphasis: {
+                                            show: false,
+                                            textStyle: {
+                                                color: '#fff'
+                                            }
+                                        }
+                                    },
+                                    roam: true,
+                                    itemStyle: {
+                                        normal: {
+                                            areaColor: '#031525',
+                                            borderColor: '#3B5077',
+                                        },
+                                        emphasis: {
+                                            areaColor: '#2B91B7'
+                                        }
+                                    },
+                                    animation: false,
+                                    data: data
+                                },
+                                {
+                                    name: '点',
+                                    type: 'scatter',
+                                    coordinateSystem: 'geo',
+                                    symbol: 'pin',
+                                    symbolSize: function (val) {
+                                        var a = (maxSize4Pin - minSize4Pin) / (max -
+                                            min);
+                                        var b = minSize4Pin - a * min;
+                                        b = maxSize4Pin - a * max;
+                                        return a * val[2] + b;
+                                    },
+                                    label: {
+                                        normal: {
+                                            show: true,
+                                            formatter: function (val) {
+                                                // console.log(val.value);
+                                                return val.value[2];
+                                            },
+                                            textStyle: {
+                                                color: '#fff',
+                                                fontSize: 9,
+                                            }
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#F62157', //标志颜色
+                                        }
+                                    },
+                                    zlevel: 6,
+                                    data: convertData(data),
+                                }
+                            ]
+                        });
                     });
-                });
+                }
+
             }
 
-        }
-
-    };
-    var demo2 = {
-        template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+        };
+        var demo2 = {
+            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
                         <h1>Second Demo</h1>
                         <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
@@ -808,125 +844,324 @@
                         <canvas id="can_demo2"></canvas>
                     </div>
                   </transition>`,
-        methods: {
-            show_can: function () {
+            methods: {
+                show_can: function () {
 
 
-                let myChart = document.getElementById('can_demo2');
-                if (myChart) {
-                    console.log('666');
-                    console.log(myChart);
-                    Chart.defaults.global.defaultFontFamily='lato';
-                    Chart.defaults.global.defaultFontSize=10;
+                    let myChart = document.getElementById('can_demo2');
+                    if (myChart) {
+                        console.log('666');
+                        console.log(myChart);
+                        Chart.defaults.global.defaultFontFamily = 'lato';
+                        Chart.defaults.global.defaultFontSize = 10;
 
-                    let massPopChart = new Chart(myChart.getContext('2d'), {
-                        type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-                        data: {
-                            labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge', 'New Bedford'],
-                            datasets: [{
-                                label: 'Population',
-                                data: [1814, 6175, 4256, 8453, 2123, 7560],
-                                // backgroundColor:'green'
-                                backgroundColor:[
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'],
-                                borderWidth:1,
-                                borderColor:'#777',
-                                hoverBorderWidth:3,
-                                hoverBorderColor:'#000'
-                            }],
-                        },
-                        options: {
-                            title:{
-                                display:true,
-                                text: "Cities In Massach",
-                                fontSize:25
+                        let massPopChart = new Chart(myChart.getContext('2d'), {
+                            type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                            data: {
+                                labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge',
+                                    'New Bedford'
+                                ],
+                                datasets: [{
+                                    label: 'Population',
+                                    data: [1814, 6175, 4256, 8453, 2123, 7560],
+                                    // backgroundColor:'green'
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderWidth: 1,
+                                    borderColor: '#777',
+                                    hoverBorderWidth: 3,
+                                    hoverBorderColor: '#000'
+                                }],
                             },
-                            legend:{
-                                position:'right',
-                                labels:{
-                                    fontColor:'#000'
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: "Cities In Massach",
+                                    fontSize: 25
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        fontColor: '#000'
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                        left: 50,
+                                        right: 0,
+                                        bottom: 0,
+                                        top: 0
+                                    }
+                                },
+                                tooltips: {
+                                    enabled: true
                                 }
-                            },
-                            layout:{
-                                padding:{
-                                    left:50,
-                                    right:0,
-                                    bottom:0,
-                                    top:0
-                                }
-                            },
-                            tooltips:{
-                                enabled:true
+                            }
+                        });
+                    }
+
+                }
+            }
+        }
+        var demo3 = {
+            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+                    <div class="content" style="height: 100%">
+                        <h1>Third Demo</h1>
+                        <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
+                        <div id="container" style="height: 600px"></div>
+                        <button @click="show_can">SHOW</button>
+                        
+                    </div>
+                  </transition>`,
+            methods: {
+                show_can: function () {
+                    var dom = document.getElementById("container");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    app.title = '正负条形图';
+                    $.ajax({
+                        url: "http://localhost:5000/city_job_uk",
+                        type: "get",
+                        dataType: "json",
+                        async: false,
+
+                        success: function (result) {
+                            console.log(11);
+                            option = {
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: ['利润', '支出', '收入']
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: [{
+                                    type: 'value'
+                                }],
+                                yAxis: [{
+                                    type: 'category',
+                                    axisTick: {
+                                        show: false
+                                    },
+                                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                }],
+                                series: [{
+                                        name: '利润',
+                                        type: 'bar',
+                                        label: {
+                                            normal: {
+                                                show: true,
+                                                position: 'inside'
+                                            }
+                                        },
+                                        data: [200, 170, 240, 244, 200, 220, 210]
+                                    },
+                                    {
+                                        name: '收入',
+                                        type: 'bar',
+                                        stack: '总量',
+                                        label: {
+                                            normal: {
+                                                show: true
+                                            }
+                                        },
+                                        data: [320, 302, 341, 374, 390, 450, 420]
+                                    },
+                                    {
+                                        name: '支出',
+                                        type: 'bar',
+                                        stack: '总量',
+                                        label: {
+                                            normal: {
+                                                show: true,
+                                                position: 'left'
+                                            }
+                                        },
+                                        data: [-120, -132, -101, -134, -190, -230, -210]
+                                    }
+                                ]
+                            };
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
                             }
                         }
                     });
+
+
+
+                    // let myChart = document.getElementById('can_demo3');
+                    // if (myChart) {
+                    //     console.log('666');
+                    //     console.log(myChart);
+                    //     Chart.defaults.global.defaultFontFamily='lato';
+                    //     Chart.defaults.global.defaultFontSize=10;
+
+                    //     let massPopChart = new Chart(myChart.getContext('2d'), {
+                    //         type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                    //         // data: {
+                    //         //     labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge', 'New Bedford'],
+                    //         //     datasets: [{
+                    //         //         label: 'Population',
+                    //         //         data: [1814, 6175, 4256, 8453, 2123, 7560],
+                    //         //         // backgroundColor:'green'
+                    //         //         backgroundColor:[
+                    //         //             'rgba(255, 99, 132, 0.2)',
+                    //         //             'rgba(54, 162, 235, 0.2)',
+                    //         //             'rgba(255, 206, 86, 0.2)',
+                    //         //             'rgba(75, 192, 192, 0.2)',
+                    //         //             'rgba(153, 102, 255, 0.2)',
+                    //         //             'rgba(255, 159, 64, 0.2)'],
+                    //         //         borderWidth:1,
+                    //         //         borderColor:'#777',
+                    //         //         hoverBorderWidth:3,
+                    //         //         hoverBorderColor:'#000'
+                    //         //     }],
+                    //         // },
+                    //         options: {
+                    //                     tooltip : {
+                    //                         trigger: 'axis',
+                    //                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    //                             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    //                         }
+                    //                     },
+                    //                     legend: {
+                    //                         data:['利润', '支出', '收入']
+                    //                     },
+                    //                     grid: {
+                    //                         left: '3%',
+                    //                         right: '4%',
+                    //                         bottom: '3%',
+                    //                         containLabel: true
+                    //                     },
+                    //                     xAxis : [
+                    //                         {
+                    //                             type : 'value'
+                    //                         }
+                    //                     ],
+                    //                     yAxis : [
+                    //                         {
+                    //                             type : 'category',
+                    //                             axisTick : {show: false},
+                    //                             data : ['周一','周二','周三','周四','周五','周六','周日']
+                    //                         }
+                    //                     ],
+                    //                     series : [
+                    //                         {
+                    //                             name:'利润',
+                    //                             type:'bar',
+                    //                             label: {
+                    //                                 normal: {
+                    //                                     show: true,
+                    //                                     position: 'inside'
+                    //                                 }
+                    //                             },
+                    //                             data:[200, 170, 240, 244, 200, 220, 210]
+                    //                         },
+                    //                         {
+                    //                             name:'收入',
+                    //                             type:'bar',
+                    //                             stack: '总量',
+                    //                             label: {
+                    //                                 normal: {
+                    //                                     show: true
+                    //                                 }
+                    //                             },
+                    //                             data:[320, 302, 341, 374, 390, 450, 420]
+                    //                         },
+                    //                         {
+                    //                             name:'支出',
+                    //                             type:'bar',
+                    //                             stack: '总量',
+                    //                             label: {
+                    //                                 normal: {
+                    //                                     show: true,
+                    //                                     position: 'left'
+                    //                                 }
+                    //                             },
+                    //                             data:[-120, -132, -101, -134, -190, -230, -210]
+                    //                         }
+                    //                     ]
+                    //                 }
+                    //     });
+                    // }
+
+                }
+            }
+        };
+
+        var routes = [{
+                "path": "/main",
+                component: main
+            },
+            {
+                "path": "/demo1",
+                component: demo1
+            },
+            {
+                "path": "/demo2",
+                component: demo2
+            },
+            {
+                "path": "/demo3",
+                component: demo3
+            }
+        ];
+
+        var router = new VueRouter({
+            routes
+        });
+
+        new Vue({
+            router,
+            el: "#app",
+            data: {
+                title: "Comp 9021 demo",
+                content: "Here is content",
+                nav_bar: "Here is nva bar",
+                mouse_X: 200,
+                mouse_Y: 0,
+                show_nav: false,
+                menu_show: false,
+                city_name: "",
+                citys: []
+            },
+            methods: {
+                updateXY: function (e) {
+                    this.mouse_X = e.clientX;
+                    this.mouse_Y = e.offsetY;
+
+                },
+                menu_click: function () {
+                    console.log("66666");
+                    this.menu_show = true;
+                },
+                hide_menu: function () {
+                    $("#rec_city").hide();
+                    this.menu_show = false;
                 }
 
+
             }
-        }
-    }
-    var demo3 = {
-        template:`<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content">
-                        <h1>Third Demo</h1>
-                        <img src="https://docs.microsoft.com/en-us/sql/reporting-services/report-builder/media/report-builder-quick-pie-chart.png?view=sql-server-2017" alt="">
-                    </div>
-                  </transition>`
-    };
-
-    var routes = [
-        {"path":"/main",component:main},
-        {"path":"/demo1",component:demo1},
-        {"path":"/demo2",component:demo2},
-        {"path":"/demo3",component:demo3}
-    ];
-
-    var router = new VueRouter({
-        routes
-    });
-
-    new Vue({
-        router,
-        el:"#app",
-        data:{
-            title:"Comp 9021 demo",
-            content:"Here is content",
-            nav_bar:"Here is nva bar",
-            mouse_X:200,
-            mouse_Y:0,
-            show_nav:false,
-            menu_show:false,
-            city_name:"",
-            citys:[]
-        },
-        methods:{
-            updateXY:function (e) {
-                this.mouse_X = e.clientX;
-                this.mouse_Y = e.offsetY;
-
-            },
-            menu_click:function () {
-                console.log("66666");
-                this.menu_show = true;
-            },
-            hide_menu:function () {
-                $("#rec_city").hide();
-                this.menu_show = false;
-            }
-
-
-        }
-    })
-
-</script>
-<script>
-
-</script>
-<script src="app.js"></script>
+        })
+    </script>
+    <script>
+    </script>
+    <script src="app.js"></script>
 </body>
+
 </html>
