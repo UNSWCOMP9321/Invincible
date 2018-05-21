@@ -885,9 +885,13 @@
         }
         var demo3 = {
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content" style="height: 100%; width: 120%">
+                    <div class="content" style="height: 100%; width: 100%">
                         <h1>Third Demo</h1>
+<<<<<<< HEAD
                         <div id="container1" style="height:500px;width:1000px"></div>
+=======
+                        <div id="container" style="height:600px;width:100%"></div>
+>>>>>>> c18c83aa27b67a6d529c8188463bf84a512e71ec
                         <button @click="show_can">SHOW</button>
                     </div>
                   </transition>`,
@@ -932,7 +936,7 @@
                                 },
                                 grid: {
                                     left: '3%',
-                                    right: '4%',
+                                    right: '35%',
                                     bottom: '3%',
                                     containLabel: true
                                 },
@@ -1027,7 +1031,7 @@
                 }
             }
         };
-
+        
         var routes = [{
                 "path": "/main",
                 component: main
