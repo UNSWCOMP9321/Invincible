@@ -114,8 +114,22 @@ footer, header, hgroup, menu, nav, section {
     float: left;
     list-style: none;
     margin-right: 20px;
+    border: 1px solid red;
+    display: block;
+    width:auto;
+    height: auto;
+}
+
+#city_list{
+    height: auto;
+    display: block;
+}
+
+#city_click{
+    width:100%;
+    height:auto;
     /*border: 1px solid red;*/
-    width:auto
+    overflow: auto;
 }
 
 #rec_city{
