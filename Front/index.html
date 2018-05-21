@@ -911,9 +911,9 @@
         }
         var demo3 = {
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content" style="height: 100%; width: 120%">
+                    <div class="content" style="height: 100%; width: 100%">
                         <h1>Third Demo</h1>
-                        <div id="container" style="height:600px;width:0px"></div>
+                        <div id="container" style="height:600px;width:100%"></div>
                         <button @click="show_can">SHOW</button>
                     </div>
                   </transition>`,
@@ -1053,7 +1053,7 @@
                 }
             }
         };
-
+        
         var routes = [{
                 "path": "/main",
                 component: main
