@@ -150,12 +150,15 @@
                         <div id="rec_city">
                             <ul>
                                 <li v-for="item in rec_citys" class="rec_list" @click="choose_city">{{item}}</li>
+                                <div style="clear: both"></div>
                             </ul>
                         </div>
+                        <div id="city_click">
                         <ul id="city_list">
                             <!--<li v-for="item in citys" @click="delete_city">{{item}}</li>-->
                             <li v-for="item in citys" @click="delete_city">{{item.name}}</li>
                         </ul>
+                        </div>
                         <br>
                         <!--<div id="city_content">{{city_name}}</div>-->
                         <div id="picture" style="width: 100%;height: 600px"></div>
@@ -528,37 +531,7 @@
                                         }
                                     }
                                 },
-                                // {
-                                //     type: 'map',
-                                //     map: 'England',
-                                //     geoIndex: 0,
-                                //     zoom:3,
-                                //     aspectScale: 0.75, //长宽比
-                                //     showLegendSymbol: false, // 存在legend时显示
-                                //     label: {
-                                //         normal: {
-                                //             show: false
-                                //         },
-                                //         emphasis: {
-                                //             show: false,
-                                //             textStyle: {
-                                //                 color: '#fff'
-                                //             }
-                                //         }
-                                //     },
-                                //     roam: true,
-                                //     itemStyle: {
-                                //         normal: {
-                                //             areaColor: '#031525',
-                                //             borderColor: '#3B5077',
-                                //         },
-                                //         emphasis: {
-                                //             areaColor: '#2B91B7'
-                                //         }
-                                //     },
-                                //     animation: false,
-                                //     data: data
-                                // },
+
                                 {
                                     name: '点',
                                     type: 'scatter',
@@ -905,6 +878,7 @@
                             }
                         });
                     }
+                    // $("#contain div").css("width",700);
 
                 }
             }
@@ -913,13 +887,13 @@
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content" style="height: 100%; width: 120%">
                         <h1>Third Demo</h1>
-                        <div id="container" style="height:600px;width:0px"></div>
+                        <div id="container1" style="height:500px;width:1000px"></div>
                         <button @click="show_can">SHOW</button>
                     </div>
                   </transition>`,
             methods: {
                 show_can: function () {
-                    var dom = document.getElementById("container");
+                    var dom = document.getElementById("container1");
                     var myChart = echarts.init(dom);
                     var app = {};
                     option = null;
