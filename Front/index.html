@@ -814,71 +814,94 @@
                         <h1>Second Demo</h1>
                         <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
                         <button @click="show_can">SHOW</button>
+                        <div id="demo2" style="height:500px;width:450px"></div>
                         <canvas id="can_demo2"></canvas>
                     </div>
                   </transition>`,
             methods: {
                 show_can: function () {
-
-
-                    let myChart = document.getElementById('can_demo2');
-                    if (myChart) {
-                        console.log('666');
-                        console.log(myChart);
-                        Chart.defaults.global.defaultFontFamily = 'lato';
-                        Chart.defaults.global.defaultFontSize = 10;
-
-                        let massPopChart = new Chart(myChart.getContext('2d'), {
-                            type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-                            data: {
-                                labels: ['Boston', 'Worcester', 'Springfield', 'Lowll', 'Cambridge',
-                                    'New Bedford'
-                                ],
-                                datasets: [{
-                                    label: 'Population',
-                                    data: [1814, 6175, 4256, 8453, 2123, 7560],
-                                    // backgroundColor:'green'
-                                    backgroundColor: [
-                                        'rgba(255, 99, 132, 0.2)',
-                                        'rgba(54, 162, 235, 0.2)',
-                                        'rgba(255, 206, 86, 0.2)',
-                                        'rgba(75, 192, 192, 0.2)',
-                                        'rgba(153, 102, 255, 0.2)',
-                                        'rgba(255, 159, 64, 0.2)'
-                                    ],
-                                    borderWidth: 1,
-                                    borderColor: '#777',
-                                    hoverBorderWidth: 3,
-                                    hoverBorderColor: '#000'
-                                }],
+                    let dom = document.getElementById('demo2');
+                    var myChart = echarts.init(dom);
+                    console.log("22");
+                    var dataStyle = {
+                        normal: {
+                            label: {
+                                show: false
                             },
-                            options: {
-                                title: {
-                                    display: true,
-                                    text: "Cities In Massach",
-                                    fontSize: 25
-                                },
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        fontColor: '#000'
-                                    }
-                                },
-                                layout: {
-                                    padding: {
-                                        left: 50,
-                                        right: 0,
-                                        bottom: 0,
-                                        top: 0
-                                    }
-                                },
-                                tooltips: {
-                                    enabled: true
-                                }
+                            labelLine: {
+                                show: false
+                            },
+                            shadowBlur: 40,
+                            shadowColor: 'rgba(40, 40, 40,0.5)',
+                        }
+                    };
+
+                    myChart.setOption(option = {
+                        backgroundColor: '#f2f2f2',
+                        color: ['#ffdb6d', '#89c9e1', '#ce77b6', '#f29e29'],
+
+                        title: {
+                            text: '平日甜食占比',
+                            x: 'center',
+                            top: '92%',
+                            textStyle: {
+                                color: '#6c6c6c'
                             }
-                        });
-                    }
-                    // $("#contain div").css("width",700);
+                        },
+
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: '2%',
+                            top: '0',
+                            data: ['蛋糕', '冷饮', '甜筒', '糖果']
+                        },
+                        series: [{
+                            name: '平日甜食占比',
+                            type: 'pie',
+                            radius: ['50%', '70%'],
+                            avoidLabelOverlap: false,
+                            itemStyle: dataStyle,
+                            label: {
+                                normal: {
+                                    show: false,
+                                    position: 'center'
+                                },
+                                emphasis: {
+                                    show: true,
+                                    formatter: function(param) {
+                                        return param.percent.toFixed(0) + '%';
+                                    },
+                                    textStyle: {
+                                        fontSize: '30',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: true
+                                }
+                            },
+                            data: [{
+                                value: 480,
+                                name: '蛋糕'
+                            }, {
+                                value: 320,
+                                name: '冷饮'
+                            }, {
+                                value: 250,
+                                name: '甜筒'
+                            }, {
+                                value: 145,
+                                name: '糖果'
+                            }]
+                        }]
+                    });
+
 
                 }
             }
@@ -887,11 +910,7 @@
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content" style="height: 100%; width: 100%">
                         <h1>Third Demo</h1>
-<<<<<<< HEAD
-                        <div id="container1" style="height:500px;width:1000px"></div>
-=======
-                        <div id="container" style="height:600px;width:100%"></div>
->>>>>>> c18c83aa27b67a6d529c8188463bf84a512e71ec
+                        <div id="container1" style="height:500px;width:1500px"></div>
                         <button @click="show_can">SHOW</button>
                     </div>
                   </transition>`,
