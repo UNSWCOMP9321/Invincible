@@ -807,15 +807,15 @@
                         <h1>Second Demo</h1>
                         <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
                         <button @click="show_all">SHOW</button>
-                        <div id="demo2_1" style="height:500px;width:100%"></div>
-                        <div id="demo2_2" style="height:500px;width:100%"></div>
+                        <div id="demo2_1" style="height:600px;width:100%"></div>
+                        <!--<div id="demo2_2" style="height:500px;width:100%"></div>-->
                         <canvas id="can_demo2"></canvas>
                     </div>
                   </transition>`,
             methods: {
                 show_all:function (){
                     this.show_can(this.url_au,"demo2_1","Australia");
-                    this.show_can(this.url_uk,"demo2_2","UK");
+                    //this.show_can(this.url_uk,"demo2_2","UK");
 
                 },
                 show_can: function (url, dom_id, graph_name) {
@@ -838,7 +838,7 @@
                     var category;
                     var cat_data
                     $.ajax({
-                        url: url,
+                        url: this.url_au,
                         type: "get",
                         dataType: "json",
                         async: false,
@@ -846,6 +846,21 @@
                         success: function (result) {
                            category = result.data;
                            cat_data = result.value;
+
+
+                        }
+                    });
+                    var uk_cat
+                    var uk_data
+                    $.ajax({
+                        url: this.url_uk,
+                        type: "get",
+                        dataType: "json",
+                        async: false,
+
+                        success: function (result) {
+                            uk_cat = result.data;
+                            uk_data = result.value;
 
 
                         }
@@ -879,31 +894,78 @@
                             name: '平日甜食占比',
                             type: 'pie',
                             radius: ['50%', '70%'],
+                            center: ['60%', '50%'],
                             avoidLabelOverlap: false,
                             itemStyle: dataStyle,
                             label: {
                                 normal: {
                                     show: false,
-                                    position: 'center'
+                                    color:"red",
+                                    x:"100",
+                                    position: 'right'
                                 },
                                 emphasis: {
                                     show: true,
                                     formatter: function(param) {
-                                        return param.percent.toFixed(0) + '%';
+                                        return  param.percent.toFixed(1) + '%' + '(AU)';
                                     },
                                     textStyle: {
-                                        fontSize: '30',
+                                        fontSize: '20',
                                         fontWeight: 'bold'
                                     }
                                 }
                             },
                             labelLine: {
                                 normal: {
-                                    show: true
+                                    lineStyle: {
+                                        color: 'red'
+                                    },
+                                    show: true,
+                                    length: 50,
+                                    length2: 30
                                 }
                             },
                             data: cat_data
-                        }]
+                        },
+                            {
+                                name: '平日甜食占比',
+                                type: 'pie',
+                                radius: ['30%', '50%'],
+                                center: ['60%', '50%'],
+                                avoidLabelOverlap: false,
+                                left:"100px",
+                                itemStyle: dataStyle,
+                                label: {
+                                    normal: {
+                                        show: false,
+                                        color:"blue",
+                                        position: 'left'
+
+                                    },
+                                    emphasis: {
+                                        show: true,
+                                        formatter: function(param) {
+                                            return  param.percent.toFixed(0) + '%' + '(UK)';
+                                        },
+                                        textStyle: {
+                                            fontSize: '20',
+                                            fontWeight: 'bold'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        lineStyle: {
+                                            color: 'red'
+                                        },
+                                        show: true,
+                                        length: 80,
+                                        length2: 50,
+                                        zlevel:100
+                                    }
+                                },
+                                data: uk_data
+                            }]
                     });
 
 
