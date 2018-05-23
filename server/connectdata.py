@@ -1,5 +1,7 @@
 import sqlite3
 import os
+import operator
+
 
 dbpath = os.getcwd()+os.path.sep+"database"+os.path.sep+"COMP9313_Ass3.db"
 conn = sqlite3.connect(dbpath,check_same_thread=False)
@@ -17,7 +19,6 @@ def get_CITY_AU(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
-    print({"location":loc_dic,"data":data})
     return {"location":loc_dic,"data":data}
 
 
@@ -38,9 +39,11 @@ def get_CATE_AU(limit=15):
     loc_dic={}
     data=[]
     for c in cu.fetchall():
-        loc_dic[c[0]]=(c[1],c[2])
-        data.append({"name":c[0],"value":c[3]})
-    return {"location":loc_dic,"data":data}
+        loc_dic[c[0]] = c[1]
+    industry = sorted(loc_dic.items(), key=operator.itemgetter(1))
+    return {"Industry":loc_dic}
+
+
 
 def get_CATE_UK(limit=15):
     cu.execute("select * from CATE_UK limit "+str(limit))
