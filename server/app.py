@@ -53,6 +53,9 @@ def get_work_hours():
 def get_industry_au():
     return jsonify(connectdata.get_CATE_AU()),200
 
+@app.route("/industryUk", methods=['GET'])
+def get_industry_uk():
+    return jsonify(connectdata.get_CATE_UK()),200
 
 @app.after_request
 def after_request(response):

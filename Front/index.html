@@ -336,26 +336,13 @@
                         async: false,
 
                         success: function (result) {
-                            // console.log(result.data);
-                            console.log(result);
                             var rec_data = [];
-                            console.log(result.location);
                             for (let i = 0; i < 2; i++) {
                                 rec_data.push(Object(result.location[i]));
                                 console.log(typeof result.location[i]);
                             }
-
-                            console.log('------2222----');
-                            console.log(rec_data);
-                            // console.log(data_val);
-
                             data_val = result.data;
                             geo_val = result.location;
-                            console.log(geo_val);
-                            console.log('----------');
-                            // console.log(data_val);
-                            // console.log(result.location);
-                            // console.log(geo_val);
 
 
                         }
@@ -809,18 +796,31 @@
 
         };
         var demo2 = {
+            data: function () {
+              return {
+                  url_au :"http://127.0.0.1:5000/industryAu",
+                  url_uk :"http://127.0.0.1:5000/industryUk"
+              }
+            },
             template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
                     <div class="content">
                         <h1>Second Demo</h1>
                         <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
-                        <button @click="show_can">SHOW</button>
-                        <div id="demo2" style="height:500px;width:450px"></div>
+                        <button @click="show_all">SHOW</button>
+                        <div id="demo2_1" style="height:500px;width:100%"></div>
+                        <div id="demo2_2" style="height:500px;width:100%"></div>
                         <canvas id="can_demo2"></canvas>
                     </div>
                   </transition>`,
             methods: {
-                show_can: function () {
-                    let dom = document.getElementById('demo2');
+                show_all:function (){
+                    this.show_can(this.url_au,"demo2_1","Australia");
+                    this.show_can(this.url_uk,"demo2_2","UK");
+
+                },
+                show_can: function (url, dom_id, graph_name) {
+                    console.log(url);
+                    let dom = document.getElementById(dom_id);
                     var myChart = echarts.init(dom);
                     console.log("22");
                     var dataStyle = {
@@ -835,13 +835,29 @@
                             shadowColor: 'rgba(40, 40, 40,0.5)',
                         }
                     };
+                    var category;
+                    var cat_data
+                    $.ajax({
+                        url: url,
+                        type: "get",
+                        dataType: "json",
+                        async: false,
 
+                        success: function (result) {
+                           category = result.data;
+                           cat_data = result.value;
+
+
+                        }
+                    });
+                    console.log(category);
+                    console.log(cat_data);
                     myChart.setOption(option = {
                         backgroundColor: '#f2f2f2',
                         color: ['#ffdb6d', '#89c9e1', '#ce77b6', '#f29e29'],
 
                         title: {
-                            text: '平日甜食占比',
+                            text: graph_name,
                             x: 'center',
                             top: '92%',
                             textStyle: {
@@ -857,7 +873,7 @@
                             orient: 'vertical',
                             x: '2%',
                             top: '0',
-                            data: ['蛋糕', '冷饮', '甜筒', '糖果']
+                            data: category
                         },
                         series: [{
                             name: '平日甜食占比',
@@ -886,19 +902,7 @@
                                     show: true
                                 }
                             },
-                            data: [{
-                                value: 480,
-                                name: '蛋糕'
-                            }, {
-                                value: 320,
-                                name: '冷饮'
-                            }, {
-                                value: 250,
-                                name: '甜筒'
-                            }, {
-                                value: 145,
-                                name: '糖果'
-                            }]
+                            data: cat_data
                         }]
                     });
 
