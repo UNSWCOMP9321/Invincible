@@ -23,10 +23,12 @@
 
 <body>
     <div id="app" @mousemove="updateXY">
-
+        <!--<div id="body_image">-->
+            <!--&lt;!&ndash;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREh9IWbEiMlCSM0SBvu53d_SLBGpDsKHjlL_IdkvTHnJ9GUghm" alt="">&ndash;&gt;-->
+        <!--</div>-->
         <div id="header">
             <div id="header_content" @click="menu_click">
-
+                <img src="http://assets.stickpng.com/thumbs/588a64cdd06f6719692a2d0d.png" alt="">
             </div>
             <!--<div id="header_bar">-->
             <!--<ul>-->
@@ -45,17 +47,25 @@
             <!--<div id="nav_bar" v-show="mouse_X < 100 || menu_show">-->
             <div id="nav_bar" v-show=" menu_show">
                 <ul>
+                    <!--<li>-->
+                        <!--<router-link to="/main">-->
+                            <!--<img class="nav_img" src="https://www.shareicon.net/download/2017/01/31/877061_miscellaneous_512x512.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
                     <li>
-                        <router-link to="/main">Main</router-link>
+                        <router-link to="/demo1">
+                            <img class="nav_img" src="https://png.icons8.com/color/1600/australia-country.png" alt="">
+                        </router-link>
                     </li>
                     <li>
-                        <router-link to="/demo1">Demo1</router-link>
+                        <router-link to="/demo2">
+                            <img class="nav_img" src="http://www.free-icons-download.net/images/three-dimensional-pie-chart-icon-31330.png" alt="">
+                        </router-link>
                     </li>
                     <li>
-                        <router-link to="/demo2">Demo2</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/demo3">Demo3</router-link>
+                        <router-link to="/demo3">
+                            <img class="nav_img" src="https://cdn0.iconfinder.com/data/icons/purple-set/512/rise_trend_stats_graph_increase_barchart-512.png" alt="">
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -138,8 +148,8 @@
                     status: "au"
                 };
             },
-            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content">
+            template: `<transition enter-active-class="animated zoomInDown" >
+                    <div>
                         <h1>First Demo</h1>
                         <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name">
 
@@ -156,7 +166,9 @@
                         <div id="city_click">
                         <ul id="city_list">
                             <!--<li v-for="item in citys" @click="delete_city">{{item}}</li>-->
-                            <li v-for="item in citys" @click="delete_city">{{item.name}}</li>
+                            <li v-for="item in citys" @click="delete_city">
+                                <button class="btn btn-info">{{item.name}}</button>
+                            </li>
                         </ul>
                         </div>
                         <br>
@@ -406,7 +418,7 @@
                         echarts.registerMap('England', geoJson);
                         geoCoordMap = geo_val;
                         data = data_val;
-                        var maxSize4Pin = 100,
+                        var maxSize4Pin = 150,
                             minSize4Pin = 20;
                         var max = 10000,
                             min = 100; // todo
@@ -456,8 +468,8 @@
                                 }
                             },
                             visualMap: {
-                                min: 1,
-                                max: 100,
+                                min: 1000,
+                                max: 6000,
                                 type: "continuous",
                                 text: ['High', 'Low'],
                                 realtime: false,
@@ -470,10 +482,11 @@
                                 show: true,
                                 map: "England",
                                 mapType: 'England', // 自定义扩展图表类型
-                                zoom: 1.8,
+                                zoom: 1.5,
+                                center:[1.52, 53.35],
                                 scaleLimit: {
                                     min: 0.8,
-                                    max: 1.5
+                                    max: 2.8
                                 },
                                 label: {
                                     normal: {
@@ -506,7 +519,11 @@
                                         normal: {
                                             formatter: '{b}',
                                             position: 'right',
-                                            show: true
+                                            show: true,
+                                            textStyle: {
+                                                color: '#fff',
+                                                fontSize: 12,
+                                            }
                                         },
                                         emphasis: {
                                             show: true
@@ -540,7 +557,7 @@
                                             },
                                             textStyle: {
                                                 color: '#fff',
-                                                fontSize: 9,
+                                                fontSize: 10,
                                             }
                                         }
                                     },
@@ -661,8 +678,8 @@
                                 }
                             },
                             visualMap: {
-                                min: 1,
-                                max: 100,
+                                min: 100,
+                                max: 10000,
                                 type: "continuous",
                                 text: ['High', 'Low'],
                                 realtime: false,
@@ -676,9 +693,10 @@
                                 map: "Australia",
                                 mapType: 'Australia', // 自定义扩展图表类型
                                 zoom: 1.8,
+                                center:[135.52, -24.35],
                                 scaleLimit: {
                                     min: 0.8,
-                                    max: 1.8
+                                    max: 2.8
                                 },
                                 label: {
                                     normal: {
@@ -711,7 +729,12 @@
                                         normal: {
                                             formatter: '{b}',
                                             position: 'right',
-                                            show: true
+                                            show: true,
+                                            textStyle: {
+                                                color: '#fff',
+                                                fontSize: 12,
+                                            }
+
                                         },
                                         emphasis: {
                                             show: true
@@ -775,7 +798,7 @@
                                             },
                                             textStyle: {
                                                 color: '#fff',
-                                                fontSize: 9,
+                                                fontSize: 10,
                                             }
                                         }
                                     },
@@ -799,14 +822,15 @@
             data: function () {
               return {
                   url_au :"http://127.0.0.1:5000/industryAu",
-                  url_uk :"http://127.0.0.1:5000/industryUk"
+                  url_uk :"http://127.0.0.1:5000/industryUk",
+                  show_list:[true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false]
               }
             },
-            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content">
+            template: `<transition enter-active-class="animated zoomInDown" >
+                    <div >
                         <h1>Second Demo</h1>
                         <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
-                        <button @click="show_all">SHOW</button>
+                        <button class="btn btn-primary" @click="show_all">SHOW</button>
                         <div id="demo2_1" style="height:600px;width:100%"></div>
                         <!--<div id="demo2_2" style="height:500px;width:100%"></div>-->
                         <canvas id="can_demo2"></canvas>
@@ -868,7 +892,7 @@
                     console.log(category);
                     console.log(cat_data);
                     myChart.setOption(option = {
-                        backgroundColor: '#f2f2f2',
+                        // backgroundColor: 'white',
                         color: ['#ffdb6d', '#89c9e1', '#ce77b6', '#f29e29'],
 
                         title: {
@@ -888,13 +912,14 @@
                             orient: 'vertical',
                             x: '2%',
                             top: '0',
-                            data: category
+                            data: category,
+                            selected: {"Accounting":false}
                         },
                         series: [{
-                            name: '平日甜食占比',
+                            name: 'Job',
                             type: 'pie',
                             radius: ['50%', '70%'],
-                            center: ['60%', '50%'],
+                            center: ['60%', '40%'],
                             avoidLabelOverlap: false,
                             itemStyle: dataStyle,
                             label: {
@@ -920,6 +945,14 @@
                                     lineStyle: {
                                         color: 'red'
                                     },
+                                    show: false,
+                                    length: 50,
+                                    length2: 30
+                                },
+                                emphasis: {
+                                    lineStyle: {
+                                        color: 'red'
+                                    },
                                     show: true,
                                     length: 50,
                                     length2: 30
@@ -928,10 +961,10 @@
                             data: cat_data
                         },
                             {
-                                name: '平日甜食占比',
+                                name: 'Job',
                                 type: 'pie',
                                 radius: ['30%', '50%'],
-                                center: ['60%', '50%'],
+                                center: ['60%', '40%'],
                                 avoidLabelOverlap: false,
                                 left:"100px",
                                 itemStyle: dataStyle,
@@ -958,10 +991,18 @@
                                         lineStyle: {
                                             color: 'red'
                                         },
-                                        show: true,
+                                        show: false,
                                         length: 80,
                                         length2: 50,
                                         zlevel:100
+                                    },
+                                    emphasis: {
+                                        lineStyle: {
+                                            color: 'red'
+                                        },
+                                        show: true,
+                                        length: 50,
+                                        length2: 30
                                     }
                                 },
                                 data: uk_data
@@ -973,11 +1014,11 @@
             }
         }
         var demo3 = {
-            template: `<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
-                    <div class="content" style="height: 100%; width: 100%">
+            template: `<transition enter-active-class="animated zoomInDown" >
+                    <div style="height: 100%; width: 100%">
                         <h1>Third Demo</h1>
+                        <button class="btn btn-primary" @click="show_can">SHOW</button>
                         <div id="container1" style="height:500px;width:1500px"></div>
-                        <button @click="show_can">SHOW</button>
                     </div>
                   </transition>`,
             methods: {
@@ -1149,7 +1190,7 @@
                 mouse_X: 200,
                 mouse_Y: 0,
                 show_nav: false,
-                menu_show: false,
+                menu_show: true,
                 city_name: "",
                 citys: []
             },
@@ -1157,6 +1198,9 @@
                 updateXY: function (e) {
                     this.mouse_X = e.clientX;
                     this.mouse_Y = e.offsetY;
+                    if (this.mouse_X < 100) {
+                        this.menu_show = true;
+                    }
 
                 },
                 menu_click: function () {
