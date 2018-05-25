@@ -57,6 +57,14 @@ def get_industry_au():
 def get_industry_uk():
     return jsonify(connectdata.get_CATE_UK()),200
 
+@app.route("/informationau/<name>", methods=['GET'])
+def get_au_information(name):
+    return jsonify(connectdata.information_au),200
+
+@app.route("/informationuk/<name>", methods=['GET'])
+def get_uk_information(name):
+    return jsonify(connectdata.information_uk),200
+
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')

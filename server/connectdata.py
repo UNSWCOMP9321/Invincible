@@ -134,6 +134,43 @@ def retrive_CITY_UK(name):
     print(choosen_city)
     return {"City":choosen_city}
 
+def takeSecond(elem):
+    return elem[1]
+
+def information_au(name):
+    select_query = "SELECT city,category FROM job_au"
+    city_au = []
+    a = []
+    for row in cu.execute(select_query).fetchall():
+        if row[0] == name:
+            city_au.append(row[1])
+    myset = set(city_au)
+    au_city = []
+    for item in myset:
+        au_city.append([item,city_au.count(item)])
+    au_city.sort(key=takeSecond)
+    au_city.reverse()
+    return {"Data":au_city}
+
+def information_uk(name):
+    select_query = "SELECT city,category FROM job_uk"
+    city_uk = []
+    for row in cu.execute(select_query).fetchall():
+        if row[0] == name:
+            city_uk.append(row[1])
+    myset = set(city_uk)
+    uk_city = []
+    for item in myset:
+        uk_city.append([item,city_uk.count(item)])
+    uk_city.sort(key=takeSecond)
+    uk_city.reverse()
+    return {"Data":uk_city}
+
+
+
+
+information_uk('East Sussex')
+
 
 
 
