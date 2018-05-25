@@ -178,9 +178,27 @@
                         <!--<div id="city_content">{{city_name}}</div>-->
                         <div id="picture" style="width: 100%;height: 600px"></div>
                         <div id="picture_2" style="width: 100%;height: 600px"></div>
+                        <div id="data_table">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Title</th>
+                                        <th>Job amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="success">
+                                        <th>1</th>
+                                        <th>Teacher</th>
+                                        <th>599</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <!--<img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">-->
                         <!--<button @click="testb()">TEST</button>-->
-                        <div>{{demo_status.demo1_status}}</div>
+                        <!--<div>{{demo_status.demo1_status}}</div>-->
                     </div>
                   </transition>`,
             methods: {
@@ -203,18 +221,24 @@
                 },
                 city_push: function () {
                     console.log(this.citys);
+                    for (let i in this.citys) {
+                        if (this.city_name == this.citys[i].name){
+                            return;
+                        }
+
+                    }
                     if (this.status == "au") {
                         this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
                             // console.log(value.body);
                             // console.log("####");
                             // console.log(value.body.data[0].name);
                             // console.log(this.citys);
-                            let attr = value.body.data[0].name
+                            let attr = value.body.data[0].name;
                             // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
                             this.locations[value.body.data[0].name] = value.body.location[attr];
-                            // console.log(this.citys);
-                            // console.log("----");
+                            console.log(this.citys);
+                            console.log("------------------------------");
                             // console.log(this.locations);
                             this.show_au();
                         });
@@ -492,9 +516,9 @@
                                 map: "England",
                                 mapType: 'England', // 自定义扩展图表类型
                                 zoom: 1.5,
-                                center:[1.52, 53.35],
+                                center:[-2.52, 53.35],
                                 scaleLimit: {
-                                    min: 0.8,
+                                    min: 1.2,
                                     max: 2.8
                                 },
                                 label: {
@@ -530,7 +554,7 @@
                                             position: 'right',
                                             show: true,
                                             textStyle: {
-                                                color: '#fff',
+                                                color: 'black',
                                                 fontSize: 12,
                                             }
                                         },
@@ -742,7 +766,7 @@
                                             position: 'right',
                                             show: true,
                                             textStyle: {
-                                                color: '#fff',
+                                                color: 'black',
                                                 fontSize: 12,
                                             }
 
@@ -823,6 +847,11 @@
                                 }
                             ]
                         });
+                    });
+                    myChart.on('click', function (params) {
+                        // var city = params.name;
+                        // loadChart(city);
+                        console.log(params);
                     });
                 }
 

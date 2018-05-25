@@ -202,10 +202,21 @@ footer, header, hgroup, menu, nav, section {
     width: 900px;
     height: 840px;
     background-color: rgba(161, 255, 187, 0.5);
+    overflow: hidden;
 }
 #demo3_content{
     margin-left: 30px;
     margin-top: 50px;
-    width: 1440px;
+    width: 1380px;
     height: 700px;
+}
+
+#data_table{
+    width:460px;
+    height: 840px;
+    border: 1px solid red;
+    position: absolute;
+    top:120px;
+    left:950px;
+    background-color: rgba(161, 255, 187, 0.5);
 }
