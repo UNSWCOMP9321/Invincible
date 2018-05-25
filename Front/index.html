@@ -40,36 +40,38 @@
             <!--</div>-->
         </div>
 
-        <div class="content" @click="hide_menu">
-            <router-view></router-view>
+        <div @click="hide_menu">
+            <!--<router-view></router-view>-->
+            <demo1 id="demo1_content" :demo_status="obj"></demo1>
+            <demo3 id = "demo3_content" class="content" :demo_status="obj"></demo3>
         </div>
-        <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
-            <!--<div id="nav_bar" v-show="mouse_X < 100 || menu_show">-->
-            <div id="nav_bar" v-show=" menu_show">
-                <ul>
+        <!--<transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">-->
+            <!--&lt;!&ndash;<div id="nav_bar" v-show="mouse_X < 100 || menu_show">&ndash;&gt;-->
+            <!--<div id="nav_bar" v-show=" menu_show">-->
+                <!--<ul>-->
+                    <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<router-link to="/main">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img class="nav_img" src="https://www.shareicon.net/download/2017/01/31/877061_miscellaneous_512x512.png" alt="">&ndash;&gt;-->
+                        <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
                     <!--<li>-->
-                        <!--<router-link to="/main">-->
-                            <!--<img class="nav_img" src="https://www.shareicon.net/download/2017/01/31/877061_miscellaneous_512x512.png" alt="">-->
+                        <!--<router-link to="/demo1">-->
+                            <!--<img class="nav_img" src="https://png.icons8.com/color/1600/australia-country.png" alt="">-->
                         <!--</router-link>-->
                     <!--</li>-->
-                    <li>
-                        <router-link to="/demo1">
-                            <img class="nav_img" src="https://png.icons8.com/color/1600/australia-country.png" alt="">
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="/demo2">
-                            <img class="nav_img" src="http://www.free-icons-download.net/images/three-dimensional-pie-chart-icon-31330.png" alt="">
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="/demo3">
-                            <img class="nav_img" src="https://cdn0.iconfinder.com/data/icons/purple-set/512/rise_trend_stats_graph_increase_barchart-512.png" alt="">
-                        </router-link>
-                    </li>
-                </ul>
-            </div>
-        </transition>
+                    <!--<li>-->
+                        <!--<router-link to="/demo2">-->
+                            <!--<img class="nav_img" src="http://www.free-icons-download.net/images/three-dimensional-pie-chart-icon-31330.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<router-link to="/demo3">-->
+                            <!--<img class="nav_img" src="https://cdn0.iconfinder.com/data/icons/purple-set/512/rise_trend_stats_graph_increase_barchart-512.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</transition>-->
 
         <div>{{mouse_X}}, {{mouse_Y}}</div>
         <button @click="testb()">TEST</button>
@@ -148,6 +150,7 @@
                     status: "au"
                 };
             },
+            props:['demo_status'],
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
                         <h1>First Demo</h1>
@@ -156,7 +159,7 @@
                         <button class="btn btn-primary" @click="city_push">Input</button>
                         <button class="btn btn-clear" @click="clear_all">Clear</button>
                         <button class="btn btn-success input_button" @click="show_au_example">AU</button>
-                        <button class="btn btn-danger input_button2" @click="show_uk_example">US</button>
+                        <button class="btn btn-danger input_button2" @click="show_uk_example">UK</button>
                         <div id="rec_city">
                             <ul>
                                 <li v-for="item in rec_citys" class="rec_list" @click="choose_city">{{item}}</li>
@@ -176,13 +179,14 @@
                         <div id="picture" style="width: 100%;height: 600px"></div>
                         <div id="picture_2" style="width: 100%;height: 600px"></div>
                         <!--<img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">-->
-                        <button @click="testb()">TEST</button>
-                        <div>{{str}}</div>
+                        <!--<button @click="testb()">TEST</button>-->
+                        <div>{{demo_status.demo1_status}}</div>
                     </div>
                   </transition>`,
             methods: {
+
                 test_input: function () {
-                    console.log(this.city_name);
+                    // console.log(this.city_name);
                 },
                 testb: function () {
                     this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", {
@@ -192,57 +196,57 @@
                         jsonp: "cb"
                     }).then(function (value) {
                         //this.arr = value.body.s;
-                        console.log(value);
+                        // console.log(value);
                         this.str = value.body.s;
-                        console.log(this.str);
+                        // console.log(this.str);
                     })
                 },
                 city_push: function () {
                     console.log(this.citys);
                     if (this.status == "au") {
                         this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
-                            console.log(value.body);
-                            console.log("####");
-                            console.log(value.body.data[0].name);
-                            console.log(this.citys);
+                            // console.log(value.body);
+                            // console.log("####");
+                            // console.log(value.body.data[0].name);
+                            // console.log(this.citys);
                             let attr = value.body.data[0].name
-                            console.log(value.body.location[attr]);
+                            // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
                             this.locations[value.body.data[0].name] = value.body.location[attr];
-                            console.log(this.citys);
-                            console.log("----");
-                            console.log(this.locations);
+                            // console.log(this.citys);
+                            // console.log("----");
+                            // console.log(this.locations);
                             this.show_au();
                         });
                     } else {
                         this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {
-                            console.log(value.body);
-                            console.log("####");
-                            console.log(value.body.data[0].name);
-                            console.log(this.citys);
+                            // console.log(value.body);
+                            // console.log("####");
+                            // console.log(value.body.data[0].name);
+                            // console.log(this.citys);
                             let attr = value.body.data[0].name
-                            console.log(value.body.location[attr]);
+                            // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
                             this.locations[value.body.data[0].name] = value.body.location[attr];
-                            console.log(this.citys);
-                            console.log("----");
-                            console.log(this.locations);
+                            // console.log(this.citys);
+                            // console.log("----");
+                            // console.log(this.locations);
                             this.show_map();
                         });
                     }
                 },
                 delete_city: function (e) {
-                    console.log(e.target.innerText);
-                    console.log(this.citys);
+                    // console.log(e.target.innerText);
+                    // console.log(this.citys);
                     let city_name = e.target.innerText.replace(/(^\s*)|(\s*$)/g, "");
-                    console.log(city_name == "Northam");
+                    // console.log(city_name == "Northam");
                     for (let i in this.citys) {
                         if (this.citys[i].name.replace(/(^\s*)|(\s*$)/g, "") == city_name) {
                             console.log('44444');
                             this.citys.splice(i, 1);
                         }
                     }
-                    console.log(this.status);
+                    // console.log(this.status);
                     if (this.status == "au") {
 
                         this.show_au();
@@ -301,6 +305,8 @@
                 // },
                 show_au_example: function () {
                     // if (this.citys.length == 0) {
+                    Vm.$emit("trans_data",{'Male_AU':true, 'Male_UK':false, 'Female_AU':true,'Female_UK':false});
+                    this.demo_status.demo1_status = "AU";
                     this.status = "au";
                     $.ajax({
                         url: "http://localhost:5000/city_job_au",
@@ -339,6 +345,9 @@
                     this.show_au();
                 },
                 show_uk_example: function () {
+                    Vm.$emit("trans_data",{'Male_AU':false, 'Male_UK':true, 'Female_AU':false,'Female_UK':true});
+                    this.demo_status.demo1_status = "UK";
+                    this.$emit("domo1-msg","uk");
                     // if (this.citys.length == 0) {
                     this.status = "uk";
                     $.ajax({
@@ -493,7 +502,7 @@
                                         show: false
                                     },
                                     emphasis: {
-                                        show: false,
+                                        show: true,
                                     }
                                 },
                                 roam: true,
@@ -629,7 +638,7 @@
                         geoCoordMap = geo_val;
                         data = data_val;
                         var maxSize4Pin = 100,
-                            minSize4Pin = 20;
+                            minSize4Pin = 40;
                         var max = 10000,
                             min = 100; // todo
                         var convertData = function (data) {
@@ -656,12 +665,14 @@
                             tooltip: {
                                 trigger: 'item',
                                 formatter: function (params) {
+                                    console.log(params);
                                     if (typeof (params.value)[2] == "undefined") {
                                         return params.name + ' : ' + params.value;
                                     } else {
                                         return params.name + ' : ' + params.value[2];
                                     }
-                                }
+                                },
+                                show:false
                             },
 
                             toolbox: {
@@ -703,7 +714,7 @@
                                         show: false
                                     },
                                     emphasis: {
-                                        show: false,
+                                        show: true,
                                     }
                                 },
                                 roam: true,
@@ -1015,17 +1026,174 @@
         }
         var demo3 = {
             template: `<transition enter-active-class="animated zoomInDown" >
-                    <div style="height: 100%; width: 100%">
+                    <div>
                         <h1>Third Demo</h1>
                         <button class="btn btn-primary" @click="show_can">SHOW</button>
                         <div id="container1" style="height:500px;width:1500px"></div>
                     </div>
                   </transition>`,
+            data:function () {
+                return {
+                    tag_status: this.demo_status.demo1_status,
+                    a:""
+                }
+            },
+            props:['demo_status'],
+            updated:function () {
+                console.log("change");
+            },
             methods: {
-                show_can: function () {
+                // show_can: function () {
+                //     //console.log(this.tag_status);
+                //     var dom = document.getElementById("container1");
+                //     var myChart = echarts.init(dom);
+                //     var app = {};
+                //     var status = this.tag_status;
+                //     option = null;
+                //     app.title = '正负条形图';
+                //     $.ajax({
+                //         url: "http://localhost:5000/work_hours",
+                //         type: "get",
+                //         dataType: "json",
+                //         async: false,
+                //
+                //         success: function (result) {
+                //             //console.log(this.dome_status.demo1_status);
+                //             option = {
+                //                 tooltip: {
+                //                     trigger: 'axis',
+                //                     axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                //                         type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                //                     },
+                //                     formatter:function(params){ // 改鼠标悬浮提示值格式
+                //                         var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                //                         let rez = params[0].name+"<br/>";
+                //                         params.forEach(item => {
+                //                             let num = 0;
+                //                             if (item.value > 0){
+                //                                 num = item.value;
+                //                             }else{
+                //                                 num = -item.value;
+                //                             }
+                //                             let strItem = colorSpan(item.color) + item.seriesName+ ' : ' +  num + " hrs"+ "<br/>";
+                //                             rez += strItem;
+                //                         });
+                //                         return rez;
+                //                     }
+                //                 },
+                //                 legend: {
+                //                     data: ['Male_AU', 'Male_UK', 'Female_AU','Female_UK'],
+                //                     selected:status
+                //                 },
+                //                 grid: {
+                //                     left: '3%',
+                //                     right: '35%',
+                //                     bottom: '3%',
+                //                     containLabel: true
+                //                 },
+                //                 xAxis: [
+                //                 {
+                //                     type : 'value',
+                //                     axisLabel:{
+                //                         formatter:function(value){
+                //                             if (value<0) {
+                //                                 return -value;
+                //                             }else{
+                //                                 return value;
+                //                             }
+                //                         }
+                //                     },
+                //                     name : 'hrs',
+                //                     nameLocation : 'end'
+                //
+                //                 }],
+                //                 yAxis: [{
+                //                     type: 'category',
+                //                     axisTick: {
+                //                         show: false
+                //                     },
+                //                     data: result.category
+                //                 }],
+                //                 series: [{
+                //                         name: 'Male_AU',
+                //                         type: 'bar',
+                //                         stack: 'Male',
+                //                         label: {
+                //                             normal: {
+                //                                 show: true,
+                //                                 position: 'inside',
+                //                                 formatter: function (value) {
+                //                                     if(value.data<0){
+                //                                         return -value.data;
+                //                                     }
+                //                                 }
+                //                             }
+                //                         },
+                //                         data: result.male_au
+                //                     },
+                //                     {
+                //                         name: 'Male_UK',
+                //                         type: 'bar',
+                //                         stack: 'Male',
+                //                         label: {
+                //                             normal: {
+                //                                 show: true,
+                //                                 position: 'inside'
+                //                             }
+                //                         },
+                //                         data: result.male_uk
+                //                     },
+                //                     {
+                //                         name: 'Female_AU',
+                //                         type: 'bar',
+                //                         stack: 'Female',
+                //                         label: {
+                //                             normal: {
+                //                                 show: true,
+                //                                 position: 'inside',
+                //                                 formatter: function (value) {
+                //                                     if(value.data<0){
+                //                                         return -value.data;
+                //                                     }
+                //                                 }
+                //                             }
+                //                         },
+                //                         data: result.female_au
+                //                     },
+                //                     {
+                //                         name: 'Female_UK',
+                //                         type: 'bar',
+                //                         stack: 'Female',
+                //                         label: {
+                //                             normal: {
+                //                                 show: true,
+                //                                 position: 'inside'
+                //                             }
+                //                         },
+                //                         data: result.female_uk
+                //                     }
+                //                 ]
+                //             };
+                //             if (option && typeof option === "object") {
+                //                 myChart.setOption(option, true);
+                //             }
+                //         }
+                //     });
+                //}
+            },
+
+            mounted(){
+                Vm.$on("trans_data", function (a) {
+                    // alert("1");
+                    this.tag_status = a;
+                    // console.log("###########################");
+                    // console.log(this.tag_status);
+                    //this.show_can();
+                    // console.log("###########################");
                     var dom = document.getElementById("container1");
                     var myChart = echarts.init(dom);
                     var app = {};
+                    var status = this.tag_status;
                     option = null;
                     app.title = '正负条形图';
                     $.ajax({
@@ -1035,6 +1203,7 @@
                         async: false,
 
                         success: function (result) {
+                            //console.log(this.dome_status.demo1_status);
                             option = {
                                 tooltip: {
                                     trigger: 'axis',
@@ -1046,19 +1215,20 @@
                                         let rez = params[0].name+"<br/>";
                                         params.forEach(item => {
                                             let num = 0;
-                                            if (item.value > 0){
-                                                num = item.value;
-                                            }else{
-                                                num = -item.value;
-                                            }
-                                            let strItem = colorSpan(item.color) + item.seriesName+ ' : ' +  num + " hrs"+ "<br/>";
-                                            rez += strItem;
-                                        });
+                                        if (item.value > 0){
+                                            num = item.value;
+                                        }else{
+                                            num = -item.value;
+                                        }
+                                        let strItem = colorSpan(item.color) + item.seriesName+ ' : ' +  num + " hrs"+ "<br/>";
+                                        rez += strItem;
+                                    });
                                         return rez;
                                     }
                                 },
                                 legend: {
-                                    data: ['Male_AU', 'Male_UK', 'Female_AU','Female_UK']
+                                    data: ['Male_AU', 'Male_UK', 'Female_AU','Female_UK'],
+                                    selected:status
                                 },
                                 grid: {
                                     left: '3%',
@@ -1067,21 +1237,21 @@
                                     containLabel: true
                                 },
                                 xAxis: [
-                                {
-                                    type : 'value',
-                                    axisLabel:{
-                                        formatter:function(value){
-                                            if (value<0) {
-                                                return -value;
-                                            }else{
-                                                return value;
+                                    {
+                                        type : 'value',
+                                        axisLabel:{
+                                            formatter:function(value){
+                                                if (value<0) {
+                                                    return -value;
+                                                }else{
+                                                    return value;
+                                                }
                                             }
-                                        }
-                                    },
-                                    name : 'hrs',
-                                    nameLocation : 'end'
+                                        },
+                                        name : 'hrs',
+                                        nameLocation : 'end'
 
-                                }],
+                                    }],
                                 yAxis: [{
                                     type: 'category',
                                     axisTick: {
@@ -1090,22 +1260,22 @@
                                     data: result.category
                                 }],
                                 series: [{
-                                        name: 'Male_AU',
-                                        type: 'bar',
-                                        stack: 'Male',
-                                        label: {
-                                            normal: {
-                                                show: true,
-                                                position: 'inside',
-                                                formatter: function (value) {
-                                                    if(value.data<0){
-                                                        return -value.data;
-                                                    }
+                                    name: 'Male_AU',
+                                    type: 'bar',
+                                    stack: 'Male',
+                                    label: {
+                                        normal: {
+                                            show: true,
+                                            position: 'inside',
+                                            formatter: function (value) {
+                                                if(value.data<0){
+                                                    return -value.data;
                                                 }
                                             }
-                                        },
-                                        data: result.male_au
+                                        }
                                     },
+                                    data: result.male_au
+                                },
                                     {
                                         name: 'Male_UK',
                                         type: 'bar',
@@ -1154,8 +1324,8 @@
                             }
                         }
                     });
-                }
-            }
+                })
+            },
         };
         
         var routes = [{
@@ -1179,9 +1349,12 @@
         var router = new VueRouter({
             routes
         });
+        Vue.component("demo1",demo1);
+        Vue.component("demo3",demo3);
 
+        var Vm = new Vue();
         new Vue({
-            router,
+            //router,
             el: "#app",
             data: {
                 title: "Comp 9021 demo",
@@ -1192,7 +1365,10 @@
                 show_nav: false,
                 menu_show: true,
                 city_name: "",
-                citys: []
+                citys: [],
+                obj: {
+                    demo1_status:{'Male_AU':true, 'Male_UK':false, 'Female_AU':true,'Female_UK':false}
+                }
             },
             methods: {
                 updateXY: function (e) {
@@ -1213,7 +1389,7 @@
                 }
 
 
-            }
+            },
         })
     </script>
     <script>
