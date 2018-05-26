@@ -63,7 +63,7 @@ def get_au_information(name):
 
 @app.route("/informationuk/<name>", methods=['GET'])
 def get_uk_information(name):
-    return jsonify(connectdata.information_uk),200
+    return jsonify(connectdata.information_uk(name)),200
 
 @app.after_request
 def after_request(response):
