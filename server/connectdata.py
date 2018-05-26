@@ -77,6 +77,7 @@ def get_CATE_UK(limit=15):
     return {"data":category, "value":data}
 
 #{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
+
 def get_WORK_HOURS():
     cu.execute("select * from WORK_HOURS where sex != 'Total'")
     data=[]
@@ -131,18 +132,18 @@ def retrive_CITY_UK(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
-    print(choosen_city)
     return {"City":choosen_city}
 
 def takeSecond(elem):
     return elem[1]
 
 def information_au(name):
+
     select_query = "SELECT city,category FROM job_au"
     city_au = []
-    a = []
+
     for row in cu.execute(select_query).fetchall():
-        if row[0] == name:
+        if row[0].lower() == name.lower():
             city_au.append(row[1])
     myset = set(city_au)
     au_city = []
@@ -150,13 +151,19 @@ def information_au(name):
         au_city.append([item,city_au.count(item)])
     au_city.sort(key=takeSecond)
     au_city.reverse()
-    return {"Data":au_city[:25]}
+    print(au_city)
+    return {"Data":au_city}
+
+information_au('cairns')
+
+
+
 
 def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
     city_uk = []
     for row in cu.execute(select_query).fetchall():
-        if row[0] == name:
+        if row[0].lower() == name.lower:
             city_uk.append(row[1])
     myset = set(city_uk)
     uk_city = []
@@ -164,12 +171,12 @@ def information_uk(name):
         uk_city.append([item,city_uk.count(item)])
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
-    return {"Data":uk_city[:21]}
+    return {"Data":uk_city}
 
 
 
 
-information_uk('East Sussex')
+
 
 
 
