@@ -147,7 +147,8 @@
                     city_name: "",
                     citys: [],
                     rec_citys: [],
-                    status: "au"
+                    status: "au",
+                    city_info:[]
                 };
             },
             props:['demo_status'],
@@ -241,6 +242,9 @@
                             console.log("------------------------------");
                             // console.log(this.locations);
                             this.show_au();
+                        });
+                        this.$http.get("http://127.0.0.1:5000/informationau/" + this.city_name).then(function (value) {
+                            console.log(value.body.value);
                         });
                     } else {
                         this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {
@@ -1057,7 +1061,7 @@
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
                         <h1>Third Demo</h1>
-                        <button class="btn btn-primary" @click="show_can">SHOW</button>
+                        <!--<button class="btn btn-primary" @click="show_can">SHOW</button>-->
                         <div id="container1" style="height:500px;width:1500px"></div>
                     </div>
                   </transition>`,
