@@ -9,6 +9,7 @@ conn = sqlite3.connect(dbpath,check_same_thread=False)
 cu=conn.cursor()
 
 #{location: {'city1':[x,y], 'city2':[x,y],...}, data:[{name: 'city1', value:233}, {name: 'city2', value:500}]}
+#{'location': {'Sydney': (151.2093, -33.8688), 'Melbourne': (144.9631, -37.8136), 'Brisbane': (153.0251, -27.4698),...
 def get_CITY_AU(city_name="all",limit=15):
     if city_name=="all":
         cu.execute("select * from CITY_AU ORDER BY job_amount DESC limit "+str(limit))
@@ -19,8 +20,11 @@ def get_CITY_AU(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
+    print({"location":loc_dic,"data":data})
     return {"location":loc_dic,"data":data}
 
+def takeSecond(elem):
+    return elem[1]
 
 def get_CITY_UK(city_name="all",limit=15):
     if city_name=="all":
@@ -42,6 +46,9 @@ def get_CATE_AU():
     data.sort(key=takeSecond)
     data.reverse()
     return {"Data": data}
+#get_CATE_AU()
+#{'Data': [['Trades & Services', 3340], ['Information & Communication Technology', 2802]... as return value
+
 
 def get_CATE_UK():
     cu.execute("select category,job_amount from CATE_UK")
@@ -94,6 +101,9 @@ def retrive_CITY_AU(name):
         if len(choosen_city)>5:
             break
     return {"City":choosen_city}
+##retrive_CITY_AU('s')
+##{'City': ['Shepparton ', 'Sunshine Coast', 'Sydney']}
+
 
 def retrive_CITY_UK(name):
     select_query = "SELECT city FROM CITY_UK"
@@ -110,8 +120,7 @@ def retrive_CITY_UK(name):
             break
     return {"City":choosen_city}
 
-def takeSecond(elem):
-    return elem[1]
+
 
 def information_au(name):
 
@@ -128,6 +137,8 @@ def information_au(name):
     au_city.sort(key=takeSecond)
     au_city.reverse()
     return {"Data":au_city}
+##information_au('sydney')
+##{'Data': [['Information & Communication Technology', 1243], ['Trades & Services', 719],..as the return value
 
 def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
