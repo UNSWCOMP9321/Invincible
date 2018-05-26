@@ -73,8 +73,6 @@
             <!--</div>-->
         <!--</transition>-->
 
-        <div>{{mouse_X}}, {{mouse_Y}}</div>
-        <button @click="testb()">TEST</button>
         <!--<div id="picture" style="width: 600px;height: 400px"></div>-->
 
         <br>
@@ -154,7 +152,7 @@
             props:['demo_status'],
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
-                        <h1>First Demo</h1>
+                        <h2>Jobs by Location</h2>
                         <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name">
 
                         <button class="btn btn-primary" @click="city_push">Input</button>
@@ -1092,7 +1090,7 @@
         var demo3 = {
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
-                        <h1>Third Demo</h1>
+                        <h2>Weekly Work Hours</h2>
                         <!--<button class="btn btn-primary" @click="show_can">SHOW</button>-->
                         <div id="container1" style="height:500px;width:1500px"></div>
                     </div>

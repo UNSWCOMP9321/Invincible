@@ -153,18 +153,11 @@ def information_au(name):
     au_city.reverse()
     return {"Data":au_city}
 
-information_au('sydney')
-
-
-
-
-
-
 def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
     city_uk = []
     for row in cu.execute(select_query).fetchall():
-        if row[0].lower() == name.lower:
+        if row[0].lower() == name.lower():
             city_uk.append(row[1])
     myset = set(city_uk)
     uk_city = []
