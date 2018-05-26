@@ -151,7 +151,10 @@ def information_au(name):
         au_city.append([item,city_au.count(item)])
     au_city.sort(key=takeSecond)
     au_city.reverse()
-    return {"Data":au_city}
+    return {"Data":au_city[0:21]}
+
+information_au('sydney')
+
 
 
 
@@ -170,15 +173,6 @@ def information_uk(name):
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
     return {"Data":uk_city[0:21]}
-
-
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> adb53ce5fc7d33a12e3ccc64deec565fa64efdc4
 
 
 
