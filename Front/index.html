@@ -148,22 +148,23 @@
                     citys: [],
                     rec_citys: [],
                     status: "au",
-                    city_info:[]
+                    city_info:[],
+                    curr_index:-1
                 };
             },
             props:['demo_status'],
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
                         <h1>First Demo</h1>
-                        <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name">
+                        <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name" @focus="new_input">
 
                         <button class="btn btn-primary" @click="city_push">Input</button>
                         <button class="btn btn-clear" @click="clear_all">Clear</button>
                         <button class="btn btn-success input_button" @click="show_au_example">AU</button>
                         <button class="btn btn-danger input_button2" @click="show_uk_example">UK</button>
                         <div id="rec_city">
-                            <ul>
-                                <li v-for="item in rec_citys" class="rec_list" @click="choose_city">{{item}}</li>
+                            <ul class="rec_list">
+                                <li v-for="(item,index) in rec_citys" :class="{hilight:index == curr_index}" @click="choose_city">{{item}}</li>
                                 <div style="clear: both"></div>
                             </ul>
                         </div>
@@ -224,6 +225,9 @@
                         this.str = value.body.s;
                         // console.log(this.str);
                     })
+                },
+                new_input:function () {
+                    this.curr_index = -1;
                 },
                 city_push: function () {
                     console.log(this.citys);
@@ -301,8 +305,38 @@
                         }
                     }
                 },
-                get_rec: function () {
+                get_rec: function (e) {
                     console.log("222");
+                    if (e.keyCode == 40) {
+                        console.log("x");
+                        // ／／$("#rec_city ul li").eq(this.curr_index).css("background-color","lightgrey").siblings().css("background-color","white");
+                        if (this.curr_index < this.rec_citys.length - 1) {
+                            this.curr_index += 1;
+                        }
+                        console.log(this.curr_index);
+                        console.log(this.rec_citys);
+                        return;
+                    }
+                    if (e.keyCode == 38) {
+                        console.log("x");
+
+                        if (this.curr_index > 0) {
+                            this.curr_index -= 1;
+                        }
+                        console.log(this.curr_index);
+                        // $("#rec_city ul li").eq(this.curr_index).css("background-color","lightgrey").siblings().css("background-color","white");
+
+                        return;
+                    }
+                    if (e.keyCode == 13) {
+                        this.city_name = $("#rec_city ul li").eq(this.curr_index).text();
+                        this.city_push();
+
+                        $("#rec_city").hide();
+                        // $("#hilight").hide();
+                        return;
+
+                    }
                     if (this.status == "au") {
                         this.$http.get("http://localhost:5000/city_job_au/" + this.city_name).then(function (
                             value) {
@@ -320,6 +354,9 @@
                     }
 
                 },
+                // rec_move:function (e) {
+                //     console.log(e);
+                // },
                 clear_all: function () {
                     this.citys = [];
                     if (this.status == "au") {

@@ -221,3 +221,7 @@ footer, header, hgroup, menu, nav, section {
     background-color: rgba(161, 255, 187, 0.5);
     overflow: auto;
 }
+
+.hilight{
+    background-color: lightgrey;
+}

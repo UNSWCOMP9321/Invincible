@@ -141,7 +141,7 @@ def information_au(name):
 
     select_query = "SELECT city,category FROM job_au"
     city_au = []
-
+    name = name.strip()
     for row in cu.execute(select_query).fetchall():
         if row[0].lower() == name.lower():
             city_au.append(row[1])
@@ -164,7 +164,7 @@ def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
     city_uk = []
     for row in cu.execute(select_query).fetchall():
-        if row[0].lower() == name.lower:
+        if row[0].lower() == name.lower():
             city_uk.append(row[1])
     myset = set(city_uk)
     uk_city = []
