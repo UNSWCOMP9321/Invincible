@@ -6,18 +6,6 @@ import connectdata
 app = Flask(__name__)
 CORS(app)
 
-
-
-"""
-class City_job_au(Resource):
-    @staticmethod
-    def get():
-        return connectdata.get_CITY_AU(), 200
-
-api = Api(app)
-api.add_resource(City_job_au, '/city_job_au', methods=['GET'])
-"""
-
 @app.route("/city_job_au", methods=['GET'])
 def get_city_au():
     return jsonify(connectdata.get_CITY_AU()),200

@@ -190,12 +190,12 @@
                                 </thead>
                                 <tbody>
                                     <tr class="success">
-                                        <th>1</th>
-                                        <th>Teacher</th>
-                                        <th>599</th>
-                                    </tr>
+                                        <!--<th>1</th>-->
+                                        <!--<th>Teacher</th>-->
+                                        <!--<th>599</th>-->
+                                    <!--</tr>-->
                                     <tr v-for="(item,index) in city_info">
-                                        <th>{{index}}</th>
+                                        <th>{{index + 1}}</th>
                                         <th>{{item[0]}}</th>
                                         <th>{{item[1]}}</th>
                                     </tr>
@@ -858,10 +858,18 @@
                             ]
                         });
                     });
+                    var that = this
                     myChart.on('click', function (params) {
                         // var city = params.name;
                         // loadChart(city);
-                        console.log(params);
+                        if (params.seriesType == "scatter") {
+                            console.log("http://127.0.0.1:5000/informationau/" + params.data.name);
+                            that.$http.get("http://127.0.0.1:5000/informationau/" + params.data.name).then(function (value) {
+                                console.log(value);
+                                that.city_info = value.body.Data;
+                            });
+                        }
+
                     });
                 }
 
