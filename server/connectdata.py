@@ -34,47 +34,19 @@ def get_CITY_UK(city_name="all",limit=15):
         data.append({"name":c[0],"value":c[3]})
     return {"location":loc_dic,"data":data}
 
-def get_CATE_AU(limit=15):
-    '''
-    cu.execute("select * from CATE_AU limit "+str(limit))
-    loc_dic={}
-    data=[]
+def get_CATE_AU():
+    cu.execute("select category,job_amount from CATE_AU")
+    data = []
     for c in cu.fetchall():
-        loc_dic[c[0]] = c[1]
-    industry = sorted(loc_dic.items(), key=operator.itemgetter(1))
-    return {"Industry":loc_dic}
-    '''
-    cu.execute("select * from CATE_AU")
-    loc_dic={}
-    data=[]
-    category = []
-    for c in cu.fetchall():
-        category.append(c[0])
-        data.append({"value":c[1], "name" : c[0]})
-    # industry = sorted(loc_dic.items(), key=operator.itemgetter(1))
-    return {"data":category, "value":data}
+        data.append([c[0], c[1]])
+    return {"Data": data}
 
-
-
-def get_CATE_UK(limit=15):
-    '''
-    cu.execute("select * from CATE_UK limit "+str(limit))
-    loc_dic={}
+def get_CATE_UK():
+    cu.execute("select category,job_amount from CATE_UK")
     data=[]
     for c in cu.fetchall():
-        loc_dic[c[0]]=(c[1],c[2])
-        data.append({"name":c[0],"value":c[3]})
-    return {"location":loc_dic,"data":data}
-    '''
-    cu.execute("select * from CATE_UK")
-    loc_dic={}
-    data=[]
-    category = []
-    for c in cu.fetchall():
-        category.append(c[0])
-        data.append({"value":c[1], "name" : c[0]})
-    # industry = sorted(loc_dic.items(), key=operator.itemgetter(1))
-    return {"data":category, "value":data}
+        data.append([c[0],c[1]])
+    return {"Data":data}
 
 #{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
 
@@ -166,8 +138,6 @@ def information_uk(name):
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
     return {"Data":uk_city}
-
-
 
 
 
