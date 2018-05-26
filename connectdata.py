@@ -156,7 +156,6 @@ def information_au(name):
 
 
 
-
 def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
     city_uk = []
@@ -169,16 +168,12 @@ def information_uk(name):
         uk_city.append([item,city_uk.count(item)])
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
-    return {"Data":uk_city[0:21]}
+    return {"Data":uk_city}
 
 
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> adb53ce5fc7d33a12e3ccc64deec565fa64efdc4
 
 
 

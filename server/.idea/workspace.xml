@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b82b89c-2077-4692-991b-78f31021667e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../Front/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Front/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/connectdata.py" afterPath="$PROJECT_DIR$/connectdata.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,32 +19,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.py">
+      <file leaf-file-name="connectdata.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/connectdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="57" column="49" lean-forward="true" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
-              <folding />
+            <state relative-caret-position="376">
+              <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+              <folding>
+                <marker date="1527304471000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
+                <marker date="1527304471000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
+                <marker date="1527304471000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
+                <marker date="1527304471000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
+                <marker date="1527304471000" expanded="true" signature="2470:2515" ph="select * fro... WORK_HOURS" />
+                <marker date="1527304471000" expanded="true" signature="3254:3278" ph="SELECT city CITY_AU" />
+                <marker date="1527304471000" expanded="true" signature="3681:3705" ph="SELECT city CITY_UK" />
+                <marker date="1527304471000" expanded="true" signature="4150:4182" ph="SELECT city,... job_au" />
+                <marker date="1527304471000" expanded="true" signature="4582:4614" ph="SELECT city,... job_uk" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connectdata.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/connectdata.py">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="152" column="30" lean-forward="false" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
-              <folding>
-                <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-                <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-                <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-                <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-                <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-                <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-                <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-                <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-                <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-              </folding>
+            <state relative-caret-position="419">
+              <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -302,17 +302,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
           <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -328,17 +318,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="77" column="17" lean-forward="false" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -354,17 +334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="73" column="21" lean-forward="true" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -379,17 +349,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1240">
           <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -404,17 +364,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -429,17 +379,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -454,17 +394,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="54" lean-forward="true" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -479,17 +409,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -504,17 +424,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -542,26 +452,26 @@
     <entry file="file://$PROJECT_DIR$/datasets/ILOSTAT_.csv" />
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="57" column="49" lean-forward="true" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+        <state relative-caret-position="419">
+          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/connectdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="152" column="30" lean-forward="false" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
+        <state relative-caret-position="376">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding>
-            <marker date="1527302028000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
-            <marker date="1527302028000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
-            <marker date="1527302028000" expanded="true" signature="2469:2514" ph="select * fro... WORK_HOURS" />
-            <marker date="1527302028000" expanded="true" signature="3253:3277" ph="SELECT city CITY_AU" />
-            <marker date="1527302028000" expanded="true" signature="3680:3704" ph="SELECT city CITY_UK" />
-            <marker date="1527302028000" expanded="true" signature="4172:4204" ph="SELECT city,... job_au" />
-            <marker date="1527302028000" expanded="true" signature="4599:4631" ph="SELECT city,... job_uk" />
+            <marker date="1527304471000" expanded="true" signature="391:444" ph="select * fro... CITY_AU" />
+            <marker date="1527304471000" expanded="true" signature="828:881" ph="select * fro... CITY_UK" />
+            <marker date="1527304471000" expanded="true" signature="1476:1497" ph="select * fro... CATE_AU" />
+            <marker date="1527304471000" expanded="true" signature="2067:2088" ph="select * fro... CATE_UK" />
+            <marker date="1527304471000" expanded="true" signature="2470:2515" ph="select * fro... WORK_HOURS" />
+            <marker date="1527304471000" expanded="true" signature="3254:3278" ph="SELECT city CITY_AU" />
+            <marker date="1527304471000" expanded="true" signature="3681:3705" ph="SELECT city CITY_UK" />
+            <marker date="1527304471000" expanded="true" signature="4150:4182" ph="SELECT city,... job_au" />
+            <marker date="1527304471000" expanded="true" signature="4582:4614" ph="SELECT city,... job_uk" />
           </folding>
         </state>
       </provider>
