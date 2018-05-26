@@ -216,7 +216,8 @@ footer, header, hgroup, menu, nav, section {
     height: 840px;
     border: 1px solid red;
     position: absolute;
-    top:120px;
+    top:100px;
     left:950px;
     background-color: rgba(161, 255, 187, 0.5);
+    overflow: auto;
 }
