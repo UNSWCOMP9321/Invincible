@@ -194,6 +194,11 @@
                                         <th>Teacher</th>
                                         <th>599</th>
                                     </tr>
+                                    <tr v-for="(item,index) in city_info">
+                                        <th>{{index}}</th>
+                                        <th>{{item[0]}}</th>
+                                        <th>{{item[1]}}</th>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -244,7 +249,8 @@
                             this.show_au();
                         });
                         this.$http.get("http://127.0.0.1:5000/informationau/" + this.city_name).then(function (value) {
-                            console.log(value.body.value);
+                            console.log(value.body.Data);
+                            this.city_info = value.body.Data;
                         });
                     } else {
                         this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {

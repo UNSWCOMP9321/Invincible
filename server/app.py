@@ -59,7 +59,7 @@ def get_industry_uk():
 
 @app.route("/informationau/<name>", methods=['GET'])
 def get_au_information(name):
-    return jsonify(connectdata.information_au),200
+    return jsonify(connectdata.information_au(name)),200
 
 @app.route("/informationuk/<name>", methods=['GET'])
 def get_uk_information(name):
