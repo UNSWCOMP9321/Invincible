@@ -39,6 +39,8 @@ def get_CATE_AU():
     data = []
     for c in cu.fetchall():
         data.append([c[0], c[1]])
+    data.sort(key=takeSecond)
+    data.reverse()
     return {"Data": data}
 
 def get_CATE_UK():
@@ -46,6 +48,8 @@ def get_CATE_UK():
     data=[]
     for c in cu.fetchall():
         data.append([c[0],c[1]])
+    data.sort(key=takeSecond)
+    data.reverse()
     return {"Data":data}
 
 #{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
@@ -138,7 +142,5 @@ def information_uk(name):
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
     return {"Data":uk_city}
-
-
 
 
