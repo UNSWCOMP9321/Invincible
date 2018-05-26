@@ -77,6 +77,7 @@ def get_CATE_UK(limit=15):
     return {"data":category, "value":data}
 
 #{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
+
 def get_WORK_HOURS():
     cu.execute("select * from WORK_HOURS where sex != 'Total'")
     data=[]
@@ -131,7 +132,6 @@ def retrive_CITY_UK(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
-    print(choosen_city)
     return {"City":choosen_city}
 
 def takeSecond(elem):
@@ -151,9 +151,9 @@ def information_au(name):
         au_city.append([item,city_au.count(item)])
     au_city.sort(key=takeSecond)
     au_city.reverse()
-    return {"Data":au_city[0:21]}
+    return {"Data":au_city}
 
-information_au('sydney')
+
 
 
 def information_uk(name):
@@ -168,7 +168,7 @@ def information_uk(name):
         uk_city.append([item,city_uk.count(item)])
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
-    return {"Data":uk_city[0:21]}
+    return {"Data":uk_city}
 
 
 
