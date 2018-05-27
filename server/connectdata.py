@@ -1,7 +1,5 @@
 import sqlite3
 import os
-import operator
-
 
 dbpath = os.getcwd()+os.path.sep+"database"+os.path.sep+"COMP9313_Ass3.db"
 conn = sqlite3.connect(dbpath,check_same_thread=False)
@@ -20,8 +18,10 @@ def get_CITY_AU(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
-    print({"location":loc_dic,"data":data})
-    return {"location":loc_dic,"data":data}
+    if loc_dic and data:
+        return {"location":loc_dic,"data":data}
+    else:
+        return False
 
 def takeSecond(elem):
     return elem[1]
@@ -36,8 +36,14 @@ def get_CITY_UK(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
-    return {"location":loc_dic,"data":data}
+    if loc_dic and data:
+        return {"location":loc_dic,"data":data}
+    else:
+        return False
 
+
+#get_CATE_AU()
+#{'Data': [['Trades & Services', 3340], ['Information & Communication Technology', 2802]... as return value
 def get_CATE_AU():
     cu.execute("select category,job_amount from CATE_AU")
     data = []
@@ -46,9 +52,6 @@ def get_CATE_AU():
     data.sort(key=takeSecond)
     data.reverse()
     return {"Data": data}
-#get_CATE_AU()
-#{'Data': [['Trades & Services', 3340], ['Information & Communication Technology', 2802]... as return value
-
 
 def get_CATE_UK():
     cu.execute("select category,job_amount from CATE_UK")
@@ -60,7 +63,6 @@ def get_CATE_UK():
     return {"Data":data}
 
 #{"category":[],"male_au":[],"female_au":[],"male_uk":[],"female_uk":[]}
-
 def get_WORK_HOURS():
     cu.execute("select * from WORK_HOURS where sex != 'Total'")
     data=[]
@@ -87,6 +89,8 @@ def get_WORK_HOURS():
                 male_uk.append(t[3])
     return {"category":category,"male_au":male_au,"female_au":female_au,"male_uk":male_uk,"female_uk":female_uk}
 
+##retrive_CITY_AU('s')
+##{'City': ['Shepparton ', 'Sunshine Coast', 'Sydney']}
 def retrive_CITY_AU(name):
     select_query = "SELECT city FROM CITY_AU"
     city_au = []
@@ -100,10 +104,10 @@ def retrive_CITY_AU(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
-    return {"City":choosen_city}
-##retrive_CITY_AU('s')
-##{'City': ['Shepparton ', 'Sunshine Coast', 'Sydney']}
-
+    if choosen_city:
+        return {"City":choosen_city}
+    else:
+        return False
 
 def retrive_CITY_UK(name):
     select_query = "SELECT city FROM CITY_UK"
@@ -118,12 +122,14 @@ def retrive_CITY_UK(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
-    return {"City":choosen_city}
+    if choosen_city:
+        return {"City":choosen_city}
+    else:
+        return False
 
-
-
+##information_au('sydney')
+##{'Data': [['Information & Communication Technology', 1243], ['Trades & Services', 719],..as the return value
 def information_au(name):
-
     select_query = "SELECT city,category FROM job_au"
     city_au = []
     name = name.strip()
@@ -136,9 +142,10 @@ def information_au(name):
         au_city.append([item,city_au.count(item)])
     au_city.sort(key=takeSecond)
     au_city.reverse()
-    return {"Data":au_city}
-##information_au('sydney')
-##{'Data': [['Information & Communication Technology', 1243], ['Trades & Services', 719],..as the return value
+    if au_city:
+        return {"Data":au_city}
+    else:
+        return False
 
 def information_uk(name):
     select_query = "SELECT city,category FROM job_uk"
@@ -152,6 +159,8 @@ def information_uk(name):
         uk_city.append([item,city_uk.count(item)])
     uk_city.sort(key=takeSecond)
     uk_city.reverse()
-    return {"Data":uk_city}
-
+    if uk_city:
+        return {"Data":uk_city}
+    else:
+        return False
 
