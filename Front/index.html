@@ -160,11 +160,11 @@
                         <h2>Jobs by Location</h2>
                         <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name" @focus="new_input">
 
-                        <button class="btn btn-primary" @click="city_push">Input</button>
+                        <button class="btn btn-primary" @click="city_push" >Input</button>
                         <button class="btn btn-clear" @click="clear_all">Clear</button>
                         <button class="btn btn-success input_button" @click="show_au_example">AU</button>
                         <button class="btn btn-danger input_button2" @click="show_uk_example">UK</button>
-                        <div id="rec_city">
+                        <div id="rec_city" >
                             <ul class="rec_list">
                                 <li v-for="(item,index) in rec_citys" :class="{hilight:index == curr_index}" @click="choose_city">{{item}}</li>
                                 <div style="clear: both"></div>
@@ -250,6 +250,11 @@
                         if (this.city_name == this.citys[i].name){
                             return;
                         }
+                    }
+                    if (this.city_name == "") {
+                        console.log("None");
+                        alert("The data of this city is not available now");
+                        return;
 
                     }
                     console.log("222222");
@@ -264,10 +269,11 @@
 
                         }
                         this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
-                            console.log(value.body);
+                            console.log(value);
                             // console.log("####");
                             // console.log(value.body.data[0].name);
                             // console.log(this.citys);
+
                             let attr = value.body.data[0].name;
                             // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
@@ -276,6 +282,8 @@
                             console.log("------------------------------");
                             // console.log(this.locations);
                             this.show_au();
+                        },function (reason) {
+                            console.log(reason);
                         });
                         this.$http.get("http://127.0.0.1:5000/informationau/" + this.city_name).then(function (value) {
                             console.log(value.body.Data);
@@ -368,15 +376,23 @@
                             value) {
                             console.log(value.body.City);
                             this.rec_citys = value.body.City;
+                            console.log(this.rec_citys.length);
+                            $("#rec_city").show();
+                        },function (reason) {
+                            console.log(reason);
+                            this.rec_citys = [];
+                            $("#rec_city").hide();
                         });
-                        $("#rec_city").show();
                     } else {
                         this.$http.get("http://localhost:5000/city_job_uk/" + this.city_name).then(function (
                             value) {
                             console.log(value.body.City);
                             this.rec_citys = value.body.City;
+                            $("#rec_city").show();
+                        },function (reason) {
+                            this.rec_citys = [];
+                            $("#rec_city").hide();
                         });
-                        $("#rec_city").show();
                     }
 
                 },
