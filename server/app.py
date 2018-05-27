@@ -18,19 +18,27 @@ def get_city_uk():
 
 @app.route("/city_job_au/<name>", methods=['GET'])
 def retrieve_cityau(name):
+    if connectdata.retrive_CITY_AU(name) == False:
+        return jsonify({"message": "No related information!"}), 400
     return jsonify(connectdata.retrive_CITY_AU(name)),200
     
 @app.route("/city_job_uk/<name>", methods=['GET'])
 def retrieve_cityuk(name):
+    if connectdata.retrive_CITY_UK(name) == False:
+        return jsonify({"message": "No related information!"}), 400
     return jsonify(connectdata.retrive_CITY_UK(name)),200
 
 
 @app.route("/city_au/<name>", methods=['GET'])
 def get_au(name):
+    if connectdata.get_CITY_AU(name) == False:
+        return jsonify({"message" :"No related information!"}),400
     return jsonify(connectdata.get_CITY_AU(name)),200
 
 @app.route("/city_uk/<name>", methods=['GET'])
 def get_uk(name):
+    if connectdata.get_CITY_UK(name) == False:
+        return jsonify({"message" :"No related information!"}),400
     return jsonify(connectdata.get_CITY_UK(name)),200
 
 @app.route("/work_hours", methods=['GET'])
@@ -47,10 +55,14 @@ def get_industry_uk():
 
 @app.route("/informationau/<name>", methods=['GET'])
 def get_au_information(name):
+    if connectdata.information_au(name)==False:
+        return jsonify({"message" :"No related information!"}),400
     return jsonify(connectdata.information_au(name)),200
 
 @app.route("/informationuk/<name>", methods=['GET'])
 def get_uk_information(name):
+    if connectdata.information_uk(name)==False:
+        return jsonify({"message" :"No related information!"}),400
     return jsonify(connectdata.information_uk(name)),200
 
 @app.after_request

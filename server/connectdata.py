@@ -8,6 +8,8 @@ conn = sqlite3.connect(dbpath,check_same_thread=False)
 
 cu=conn.cursor()
 
+def takeSecond(elem):
+    return elem[1]
 #{location: {'city1':[x,y], 'city2':[x,y],...}, data:[{name: 'city1', value:233}, {name: 'city2', value:500}]}
 #{'location': {'Sydney': (151.2093, -33.8688), 'Melbourne': (144.9631, -37.8136), 'Brisbane': (153.0251, -27.4698),...
 def get_CITY_AU(city_name="all",limit=15):
@@ -20,11 +22,12 @@ def get_CITY_AU(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
-    print({"location":loc_dic,"data":data})
+    if data == []:
+        return False
     return {"location":loc_dic,"data":data}
 
-def takeSecond(elem):
-    return elem[1]
+
+
 
 def get_CITY_UK(city_name="all",limit=15):
     if city_name=="all":
@@ -36,6 +39,8 @@ def get_CITY_UK(city_name="all",limit=15):
     for c in cu.fetchall():
         loc_dic[c[0]]=(c[2],c[1])
         data.append({"name":c[0],"value":c[3]})
+    if data == []:
+        return False
     return {"location":loc_dic,"data":data}
 
 def get_CATE_AU():
@@ -100,6 +105,8 @@ def retrive_CITY_AU(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
+    if choosen_city == []:
+        return False
     return {"City":choosen_city}
 ##retrive_CITY_AU('s')
 ##{'City': ['Shepparton ', 'Sunshine Coast', 'Sydney']}
@@ -118,6 +125,8 @@ def retrive_CITY_UK(name):
             choosen_city.append(i)
         if len(choosen_city)>5:
             break
+    if choosen_city == []:
+        return False
     return {"City":choosen_city}
 
 
@@ -130,6 +139,8 @@ def information_au(name):
     for row in cu.execute(select_query).fetchall():
         if row[0].lower() == name.lower():
             city_au.append(row[1])
+    if city_au == []:
+        return False
     myset = set(city_au)
     au_city = []
     for item in myset:
@@ -137,7 +148,7 @@ def information_au(name):
     au_city.sort(key=takeSecond)
     au_city.reverse()
     return {"Data":au_city}
-##information_au('sydney')
+
 ##{'Data': [['Information & Communication Technology', 1243], ['Trades & Services', 719],..as the return value
 
 def information_uk(name):
@@ -146,6 +157,8 @@ def information_uk(name):
     for row in cu.execute(select_query).fetchall():
         if row[0].lower() == name.lower():
             city_uk.append(row[1])
+    if city_uk == []:
+        return False
     myset = set(city_uk)
     uk_city = []
     for item in myset:
