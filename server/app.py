@@ -19,7 +19,7 @@ def retrieve_cityau(name):
     if data:
         return jsonify(data),200
     else:
-        return jsonify({'message':'Invalid city name!'}),400
+        return jsonify({'message':'Cannot find city with {} initials!'.format(name)}),400
 
 @app.route("/city_job_uk/<name>", methods=['GET'])
 def retrieve_cityuk(name):
@@ -27,7 +27,7 @@ def retrieve_cityuk(name):
     if data:
         return jsonify(data),200
     else:
-        return jsonify({'message':'Invalid city name!'}),400
+        return jsonify({'message': 'Cannot find city with {} initials!'.format(name)}), 400
 
 @app.route("/city_au/<name>", methods=['GET'])
 def get_au(name):
