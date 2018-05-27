@@ -208,8 +208,8 @@ html{
     background-color: white;
 }
 
-.rec_list:hover{
-    background-color: yellow;
+.rec_list li:hover{
+    background-color: lightgrey;
 }
 
 #demo1_content{

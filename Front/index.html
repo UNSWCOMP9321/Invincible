@@ -149,7 +149,9 @@
                     rec_citys: [],
                     status: "au",
                     city_info:[],
-                    curr_index:-1
+                    curr_index:-1,
+                    city_title:"",
+                    country_title:"Australia "
                 };
             },
             props:['demo_status'],
@@ -181,6 +183,7 @@
                         <div id="picture" style="width: 100%;height: 600px"></div>
                         <div id="picture_2" style="width: 100%;height: 550px"></div>
                         <div id="data_table">
+                            <h3 v-show="city_title.length != 0">City:{{city_title}}</h3>
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -208,6 +211,10 @@
                         <!--<div>{{demo_status.demo1_status}}</div>-->
                     </div>
                   </transition>`,
+            mounted:function () {
+                console.log("33333");
+                this.show_au();
+            },
             methods: {
 
                 test_input: function () {
@@ -230,16 +237,26 @@
                     this.curr_index = -1;
                 },
                 city_push: function () {
-                    console.log(this.citys);
+                    console.log(this.city_name);
                     for (let i in this.citys) {
                         if (this.city_name == this.citys[i].name){
                             return;
                         }
 
                     }
+                    console.log("222222");
                     if (this.status == "au") {
+                        this.city_name = $.trim(this.city_name);
+                        // this.city_name = this.city_name.replace(/(\s*$)/g, "");
+                        if (this.city_name == "Dubbo") {
+                            console.log("correct");
+                        }
+                        if (this.city_name == "Dubbo ") {
+                            console.log("not correct");
+
+                        }
                         this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
-                            // console.log(value.body);
+                            console.log(value.body);
                             // console.log("####");
                             // console.log(value.body.data[0].name);
                             // console.log(this.citys);
@@ -380,6 +397,7 @@
                 // },
                 show_au_example: function () {
                     // if (this.citys.length == 0) {
+                    this.city_title = ""
                     Vm.$emit("trans_data",{'Male_AU':true, 'Male_UK':false, 'Female_AU':true,'Female_UK':false});
                     this.demo_status.demo1_status = "AU";
                     this.status = "au";
@@ -420,6 +438,7 @@
                     this.show_au();
                 },
                 show_uk_example: function () {
+                    this.city_title = ""
                     Vm.$emit("trans_data",{'Male_AU':false, 'Male_UK':true, 'Female_AU':false,'Female_UK':true});
                     this.demo_status.demo1_status = "UK";
                     this.$emit("domo1-msg","uk");
@@ -657,10 +676,11 @@
                         });
 
                     });
-                    var that = this
+                    var that = this;
                     myChart.on('click', function (params) {
                         // var city = params.name;
                         // loadChart(city);
+                        that.city_title = params.data.name;
                         if (params.seriesType == "scatter") {
                             console.log("http://127.0.0.1:5000/informationuk/" + params.data.name);
                             that.$http.get("http://127.0.0.1:5000/informationuk/" + params.data.name).then(function (value) {
@@ -913,10 +933,11 @@
                             ]
                         });
                     });
-                    var that = this
+                    var that = this;
                     myChart.on('click', function (params) {
                         // var city = params.name;
                         // loadChart(city);
+                        that.city_title = params.data.name;
                         if (params.seriesType == "scatter") {
                             console.log("http://127.0.0.1:5000/informationau/" + params.data.name);
                             that.$http.get("http://127.0.0.1:5000/informationau/" + params.data.name).then(function (value) {
