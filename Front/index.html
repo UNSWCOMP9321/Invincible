@@ -15,10 +15,7 @@
 <body>
     <div id="app" @mousemove="updateXY">
         <div id="header">
-            <div id="header_content" @click="menu_click">
-                <img src="http://assets.stickpng.com/thumbs/588a64cdd06f6719692a2d0d.png" alt="">
-            </div>
-            <h2 class="glyphicon-header" style="float: right; margin-top: 30px">Job statistic analysis</h2>
+            <h1  style="float: left; margin-top: 30px ; margin-left: 30px">Job Research and Statistics of Australia and the United Kingdom</h1>
         </div>
         <div style="clear: both"></div>
         <div @click="hide_menu">
@@ -65,7 +62,7 @@
                     city_info:[],
                     curr_index:-1,
                     city_title:"",
-                    country_title:"Australia overall job information"
+                    country_title:"Jobs by Industy of Australia"
                 };
             },
             props:['demo_status'],
@@ -94,7 +91,7 @@
                         <div id="picture" style="width: 100%;height: 600px"></div>
                         <div id="picture_2" style="width: 100%;height: 550px"></div>
                         <div id="data_table">
-                            <h3 v-show="city_title.length != 0">City:{{city_title}}</h3>
+                            <h3 v-show="city_title.length != 0">Jobs by Industry<br>City: <strong>{{city_title}}</strong></h3>
                             <h3 v-show="city_title.length == 0">{{country_title}}</h3>
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
@@ -264,7 +261,7 @@
                 },
                 show_au_example: function () {
                     // if (this.citys.length == 0) {
-                    this.country_title = "Australia overall job information";
+                    this.country_title = "Jobs by Industy of Australia";
                     this.city_title = ""
                     Vm.$emit("trans_data",{'Male_AU':true, 'Male_UK':false, 'Female_AU':true,'Female_UK':false});
                     this.demo_status.demo1_status = "AU";
@@ -291,7 +288,7 @@
                     });
                 },
                 show_uk_example: function () {
-                    this.country_title = "England overall job information";
+                    this.country_title = "Jobs by Industy of the United Kingdom";
                     this.city_title = ""
                     Vm.$emit("trans_data",{'Male_AU':false, 'Male_UK':true, 'Female_AU':false,'Female_UK':true});
                     this.demo_status.demo1_status = "UK";
