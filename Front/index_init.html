@@ -11,29 +11,114 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="echarts.min.js"></script>
 
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>-->
+<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>-->
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
 
 <body>
     <div id="app" @mousemove="updateXY">
+        <!--<div id="body_image">-->
+            <!--&lt;!&ndash;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREh9IWbEiMlCSM0SBvu53d_SLBGpDsKHjlL_IdkvTHnJ9GUghm" alt="">&ndash;&gt;-->
+        <!--</div>-->
         <div id="header">
             <div id="header_content" @click="menu_click">
                 <img src="http://assets.stickpng.com/thumbs/588a64cdd06f6719692a2d0d.png" alt="">
             </div>
+            <!--<div id="header_bar">-->
+            <!--<ul>-->
+            <!--<li><router-link to="/main">Main</router-link></li>-->
+            <!--<li><router-link to="/demo1">Demo1</router-link></li>-->
+            <!--<li><router-link to="/demo2">Demo2</router-link></li>-->
+            <!--<li><router-link to="/demo3">Demo3</router-link></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+
             <h2 class="glyphicon-header" style="float: right; margin-top: 30px">Job statistic analysis</h2>
         </div>
         <div style="clear: both"></div>
         <div @click="hide_menu">
+            <!--<router-view></router-view>-->
             <demo1 id="demo1_content" :demo_status="obj"></demo1>
             <demo3 id = "demo3_content" class="content" :demo_status="obj"></demo3>
         </div>
+        <!--<transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">-->
+            <!--&lt;!&ndash;<div id="nav_bar" v-show="mouse_X < 100 || menu_show">&ndash;&gt;-->
+            <!--<div id="nav_bar" v-show=" menu_show">-->
+                <!--<ul>-->
+                    <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<router-link to="/main">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img class="nav_img" src="https://www.shareicon.net/download/2017/01/31/877061_miscellaneous_512x512.png" alt="">&ndash;&gt;-->
+                        <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--<li>-->
+                        <!--<router-link to="/demo1">-->
+                            <!--<img class="nav_img" src="https://png.icons8.com/color/1600/australia-country.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<router-link to="/demo2">-->
+                            <!--<img class="nav_img" src="http://www.free-icons-download.net/images/three-dimensional-pie-chart-icon-31330.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<router-link to="/demo3">-->
+                            <!--<img class="nav_img" src="https://cdn0.iconfinder.com/data/icons/purple-set/512/rise_trend_stats_graph_increase_barchart-512.png" alt="">-->
+                        <!--</router-link>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</transition>-->
+
+        <!--<div id="picture" style="width: 600px;height: 400px"></div>-->
+
         <br>
         <hr>
         <hr>
+        <!--<canvas id="can_demo2"></canvas>-->
+        <!--<canvas id="can_demo2"></canvas>-->
     </div>
+
     <script src="vue.js"></script>
     <script src="vue-router.js"></script>
     <script src="vue-resource.js"></script>
     <script src="jquery-3.2.1.js"></script>
     <script>
+        $.ajaxSetup({
+            async: false
+        });
+        var main = {
+            template: `
+<div id="main">
+    <ul>
+    <li>
+        <router-link to="/demo1"><div class="items">
+            <img class="item_img" src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">
+        </div></router-link></li>
+    <li>
+        <router-link to="/demo2"><div class="items">
+            <img class="item_img" src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">
+        </div></router-link>
+    </li>
+    <li>
+        <router-link to="/demo3"><div class="items">
+            <img class="item_img" src="https://docs.microsoft.com/en-us/sql/reporting-services/report-builder/media/report-builder-quick-pie-chart.png?view=sql-server-2017" alt="">
+
+        </div></router-link>
+    </li>
+    <li><div class="items"></div></li>
+    <li><div class="items"></div></li>
+    <li><div class="items"></div></li>
+    </ul>
+</div>
+`
+        };
+
         var demo1 = {
             data: function () {
                 return {
@@ -45,6 +130,7 @@
                             name: 'Alabama',
                             value: 50
                         },
+                        // {name: 'Alaska', value: 731449},
                         {
                             name: 'Arizona',
                             value: 4
@@ -73,6 +159,7 @@
                     <div>
                         <h2>Jobs by Location</h2>
                         <input class="input_bar" type="text" @keyup="get_rec" v-model="city_name" @focus="new_input">
+
                         <button class="btn btn-primary" @click="city_push" >Input</button>
                         <button class="btn btn-clear" @click="clear_all">Clear</button>
                         <button class="btn btn-success input_button" @click="show_au_example">AU</button>
@@ -85,12 +172,14 @@
                         </div>
                         <div id="city_click">
                         <ul id="city_list">
+                            <!--<li v-for="item in citys" @click="delete_city">{{item}}</li>-->
                             <li v-for="item in citys" @click="delete_city">
                                 <button class="btn btn-info">{{item.name}}</button>
                             </li>
                         </ul>
                         </div>
                         <br>
+                        <!--<div id="city_content">{{city_name}}</div>-->
                         <div id="picture" style="width: 100%;height: 600px"></div>
                         <div id="picture_2" style="width: 100%;height: 550px"></div>
                         <div id="data_table">
@@ -106,6 +195,10 @@
                                 </thead>
                                 <tbody>
                                     <tr class="success">
+                                        <!--<th>1</th>-->
+                                        <!--<th>Teacher</th>-->
+                                        <!--<th>599</th>-->
+                                    <!--</tr>-->
                                     <tr v-for="(item,index) in city_info">
                                         <th>{{index + 1}}</th>
                                         <th>{{item[0]}}</th>
@@ -114,17 +207,24 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!--<img src="https://www.excel-easy.com/smi/examples/line-chart.png" alt="">-->
+                        <!--<button @click="testb()">TEST</button>-->
+                        <!--<div>{{demo_status.demo1_status}}</div>-->
                     </div>
                   </transition>`,
             mounted:function () {
                 console.log("33333");
                 this.show_au();
                 this.$http.get("http://127.0.0.1:5000/industryAu"   ).then(function (value) {
+                    console.log(value.body.Data);
                     this.city_info = value.body.Data;
                 });
             },
             methods: {
 
+                test_input: function () {
+                    // console.log(this.city_name);
+                },
                 testb: function () {
                     this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", {
                         params: {
@@ -132,70 +232,99 @@
                         },
                         jsonp: "cb"
                     }).then(function (value) {
+                        //this.arr = value.body.s;
+                        // console.log(value);
                         this.str = value.body.s;
+                        // console.log(this.str);
                     })
                 },
                 new_input:function () {
                     this.curr_index = -1;
                 },
+                show_overall:function () {
+
+                },
                 city_push: function () {
+                    console.log(this.city_name);
                     for (let i in this.citys) {
                         if (this.city_name == this.citys[i].name){
-                            alert("The data of this city had been added");
-                            let url;
-                            if (this.status == "au"){
-                                url = "http://127.0.0.1:5000/informationau/" + this.city_name;
-                            }else {
-                                url = "http://127.0.0.1:5000/informationuk/" + this.city_name;
-                            }
-                            this.$http.get(url).then(function (value) {
-                                console.log(value);
-                                this.city_info = value.body.Data;
-                                this.city_title = this.city_name;
-                            });
                             return;
                         }
                     }
                     if (this.city_name == "") {
+                        console.log("None");
                         alert("The data of this city is not available now");
                         return;
+
                     }
+                    console.log("222222");
                     if (this.status == "au") {
                         this.city_name = $.trim(this.city_name);
+                        // this.city_name = this.city_name.replace(/(\s*$)/g, "");
+                        if (this.city_name == "Dubbo") {
+                            console.log("correct");
+                        }
+                        if (this.city_name == "Dubbo ") {
+                            console.log("not correct");
+
+                        }
                         this.$http.get("http://localhost:5000/city_au/" + this.city_name).then(function (value) {
+                            console.log(value);
+                            // console.log("####");
+                            // console.log(value.body.data[0].name);
+                            // console.log(this.citys);
+
                             let attr = value.body.data[0].name;
+                            // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
                             this.locations[value.body.data[0].name] = value.body.location[attr];
+                            console.log(this.citys);
+                            console.log("------------------------------");
+                            // console.log(this.locations);
                             this.show_au();
                         },function (reason) {
-                            alert("The data of this city is not available now");
+                            console.log(reason);
                         });
                         this.$http.get("http://127.0.0.1:5000/informationau/" + this.city_name).then(function (value) {
+                            console.log(value.body.Data);
                             this.city_info = value.body.Data;
                             this.city_title = this.city_name;
                         });
                     } else {
                         this.$http.get("http://localhost:5000/city_uk/" + this.city_name).then(function (value) {
+                            // console.log(value.body);
+                            // console.log("####");
+                            // console.log(value.body.data[0].name);
+                            // console.log(this.citys);
                             let attr = value.body.data[0].name
+                            // console.log(value.body.location[attr]);
                             this.citys.push(Object(value.body.data[0]));
                             this.locations[value.body.data[0].name] = value.body.location[attr];
+                            // console.log(this.citys);
+                            // console.log("----");
+                            // console.log(this.locations);
                             this.show_map();
-                        },function (reason) {
-                            alert("The data of this city is not available now");
                         });
                         this.$http.get("http://127.0.0.1:5000/informationuk/" + this.city_name).then(function (value) {
+                            console.log(value.body.Data);
                             this.city_info = value.body.Data;
                         });
                     }
                 },
                 delete_city: function (e) {
+                    // console.log(e.target.innerText);
+                    // console.log(this.citys);
                     let city_name = e.target.innerText.replace(/(^\s*)|(\s*$)/g, "");
+                    // console.log(city_name == "Northam");
                     for (let i in this.citys) {
                         if (this.citys[i].name.replace(/(^\s*)|(\s*$)/g, "") == city_name) {
+                            console.log('44444');
                             this.citys.splice(i, 1);
                         }
                     }
+                    // console.log(this.status);
                     if (this.status == "au") {
+
                         this.show_au();
                     } else {
                         this.show_map();
@@ -205,41 +334,59 @@
 
                     for (let i in this.data_val) {
                         if (this.data_val[i].name == e.target.innerText) {
+                            console.log('44444');
                             this.data_val.splice(i, 1);
                         }
                     }
                 },
                 get_rec: function (e) {
+                    console.log("222");
                     if (e.keyCode == 40) {
+                        console.log("x");
+                        // ／／$("#rec_city ul li").eq(this.curr_index).css("background-color","lightgrey").siblings().css("background-color","white");
                         if (this.curr_index < this.rec_citys.length - 1) {
                             this.curr_index += 1;
                         }
+                        console.log(this.curr_index);
+                        console.log(this.rec_citys);
                         return;
                     }
                     if (e.keyCode == 38) {
+                        console.log("x");
+
                         if (this.curr_index > 0) {
                             this.curr_index -= 1;
                         }
+                        console.log(this.curr_index);
+                        // $("#rec_city ul li").eq(this.curr_index).css("background-color","lightgrey").siblings().css("background-color","white");
+
                         return;
                     }
                     if (e.keyCode == 13) {
                         this.city_name = $("#rec_city ul li").eq(this.curr_index).text();
                         this.city_push();
+
                         $("#rec_city").hide();
+                        // $("#hilight").hide();
                         return;
+
                     }
                     if (this.status == "au") {
                         this.$http.get("http://localhost:5000/city_job_au/" + this.city_name).then(function (
                             value) {
+                            console.log(value.body.City);
                             this.rec_citys = value.body.City;
+                            console.log(this.rec_citys.length);
                             $("#rec_city").show();
                         },function (reason) {
+                            console.log(reason);
                             this.rec_citys = [];
                             $("#rec_city").hide();
                         });
                     } else {
                         this.$http.get("http://localhost:5000/city_job_uk/" + this.city_name).then(function (
                             value) {
+                            console.log(value.body.City);
                             this.rec_citys = value.body.City;
                             $("#rec_city").show();
                         },function (reason) {
@@ -249,6 +396,9 @@
                     }
 
                 },
+                // rec_move:function (e) {
+                //     console.log(e);
+                // },
                 clear_all: function () {
                     this.citys = [];
                     if (this.status == "au") {
@@ -258,10 +408,18 @@
                     }
                 },
                 choose_city: function (e) {
+                    console.log(e.target.innerText);
                     this.city_name = e.target.innerText;
+                    console.log("5555533");
                     $("#rec_city").hide();
 
                 },
+                // rec_input_hide:function () {
+                //     this.choose_city(e);
+                //     $("#rec_city").hide();
+                //     console.log("5555");
+                //
+                // },
                 show_au_example: function () {
                     // if (this.citys.length == 0) {
                     this.country_title = "Australia overall job information";
@@ -274,19 +432,38 @@
                         type: "get",
                         dataType: "json",
                         async: false,
+
                         success: function (result) {
+                            // console.log(result.data);
+                            console.log(result);
                             var rec_data = [];
+                            console.log(result.location);
                             for (let i = 0; i < 2; i++) {
                                 rec_data.push(Object(result.location[i]));
+                                console.log(typeof result.location[i]);
                             }
+
+                            console.log('------2222----');
+                            console.log(rec_data);
+                            // console.log(data_val);
+
                             data_val = result.data;
                             geo_val = result.location;
+                            console.log(geo_val);
+                            console.log('----------');
+                            // console.log(data_val);
+                            // console.log(result.location);
+                            // console.log(geo_val);
+
+
                         }
                     });
                     this.locations = geo_val;
                     this.citys = data_val;
+                    console.log("################");
                     this.show_au();
                     this.$http.get("http://127.0.0.1:5000/industryAu"   ).then(function (value) {
+                        console.log(value.body.Data);
                         this.city_info = value.body.Data;
                     });
                 },
@@ -296,16 +473,19 @@
                     Vm.$emit("trans_data",{'Male_AU':false, 'Male_UK':true, 'Female_AU':false,'Female_UK':true});
                     this.demo_status.demo1_status = "UK";
                     this.$emit("domo1-msg","uk");
+                    // if (this.citys.length == 0) {
                     this.status = "uk";
                     $.ajax({
                         url: "http://localhost:5000/city_job_uk",
                         type: "get",
                         dataType: "json",
                         async: false,
+
                         success: function (result) {
                             var rec_data = [];
                             for (let i = 0; i < 2; i++) {
                                 rec_data.push(Object(result.location[i]));
+                                console.log(typeof result.location[i]);
                             }
                             data_val = result.data;
                             geo_val = result.location;
@@ -317,32 +497,62 @@
                     this.citys = data_val;
                     this.show_map();
                     this.$http.get("http://127.0.0.1:5000/industryUk"   ).then(function (value) {
+                        console.log(value.body.Data);
                         this.city_info = value.body.Data;
                     });
                 },
                 show_map: function () {
+                    console.log(this.map_value);
                     map_value = this.map_value;
                     var map_color = this.map_color;
                     var dom = document.getElementById("picture_2");
+
                     $("#picture_2").show();
                     $("#picture").hide();
                     var myChart = echarts.init(dom);
                     var app = {};
                     option = null;
                     myChart.showLoading();
+
+                    // var geo_val = this.locations;
+                    console.log(this.locations);
                     var geo_val;
+                    // var data_val = this.data_val;
                     var data_val = "222";
+                    console.log('-----');
+                    // console.log(geo_val);
+                    // console.log(data_val)
+                    console.log('------$$$$$$$-------');
+                    console.log(this.locations);
                     this.$http.get("http://localhost:5000/city_job_uk", {
                         emulateJSON: true
                     }).then(function (value) {
+                        //this.arr = value.body.s;
+
+                        console.log("111111");
+                        console.log(value.body.location);
+                        console.log(geo_val);
                         var gee = Object(value.body.location);
+                        console.log(gee);
+                        // geo_val = Object(value.body.location);
+                        // data_val = value.body.data;
+                        // this.str = value.body.s;
+                        // console.log(this.str);
                     }).catch(function (reason) {
                         console.log(reason);
                     });
                     data_val = this.citys;
                     geo_val = this.locations;
+                    // }
+                    console.log('------$$$$$$$-------');
+
+                    console.log(data_val);
+
+
                     $.get('map/England.json', function (geoJson) {
+
                         myChart.hideLoading();
+
                         echarts.registerMap('England', geoJson);
                         geoCoordMap = geo_val;
                         data = data_val;
@@ -352,6 +562,7 @@
                             min = 100; // todo
                         var convertData = function (data) {
                             var res = [];
+                            console.log(data);
                             for (var i = 0; i < data.length; i++) {
                                 var geoCoord = geoCoordMap[data[i].name];
                                 if (geoCoord) {
@@ -363,6 +574,7 @@
                             }
                             return res;
                         };
+                        console.log(convertData(data));
                         myChart.setOption(option = {
                             title: {
                                 text: 'England Job distribution',
@@ -505,14 +717,18 @@
                         // loadChart(city);
                         that.city_title = params.data.name;
                         if (params.seriesType == "scatter") {
+                            console.log("http://127.0.0.1:5000/informationuk/" + params.data.name);
                             that.$http.get("http://127.0.0.1:5000/informationuk/" + params.data.name).then(function (value) {
+                                console.log(value);
                                 that.city_info = value.body.Data;
                             });
                         }
+
                     });
 
                 },
                 show_au: function () {
+                    console.log(this.map_value);
                     map_value = this.map_value;
                     var map_color = this.map_color;
                     var dom = document.getElementById("picture");
@@ -522,20 +738,46 @@
                     var app = {};
                     option = null;
                     myChart.showLoading();
+
+                    // var geo_val = this.locations;
                     console.log(this.locations);
                     var geo_val;
+                    // var data_val = this.data_val;
                     var data_val = "222";
+                    console.log('-----');
+                    // console.log(geo_val);
+                    // console.log(data_val)
+                    console.log('------$$$$$$$-------');
+                    console.log(this.locations);
                     this.$http.get("http://localhost:5000/city_job_au", {
                         emulateJSON: true
                     }).then(function (value) {
+                        //this.arr = value.body.s;
+
+                        console.log("111111");
+                        console.log(value.body.location);
+                        console.log(geo_val);
                         var gee = Object(value.body.location);
+                        console.log(gee);
+                        // geo_val = Object(value.body.location);
+                        // data_val = value.body.data;
+                        // this.str = value.body.s;
+                        // console.log(this.str);
                     }).catch(function (reason) {
                         console.log(reason);
                     });
                     data_val = this.citys;
                     geo_val = this.locations;
+                    // }
+                    console.log('------$$$$$$$-------');
+
+                    console.log(data_val);
+
+
                     $.get('map/Australia.json', function (geoJson) {
+
                         myChart.hideLoading();
+
                         echarts.registerMap('Australia', geoJson);
                         geoCoordMap = geo_val;
                         data = data_val;
@@ -545,6 +787,7 @@
                             min = 100; // todo
                         var convertData = function (data) {
                             var res = [];
+                            console.log(data);
                             for (var i = 0; i < data.length; i++) {
                                 var geoCoord = geoCoordMap[data[i].name];
                                 if (geoCoord) {
@@ -556,6 +799,7 @@
                             }
                             return res;
                         };
+                        console.log(convertData(data));
                         myChart.setOption(option = {
                             title: {
                                 text: 'Australis Job distribution',
@@ -565,6 +809,7 @@
                             tooltip: {
                                 trigger: 'item',
                                 formatter: function (params) {
+                                    console.log(params);
                                     if (typeof (params.value)[2] == "undefined") {
                                         return params.name + ' : ' + params.value;
                                     } else {
@@ -573,6 +818,7 @@
                                 },
                                 show:false
                             },
+
                             toolbox: {
                                 show: true,
                                 orient: 'vertical',
@@ -724,12 +970,17 @@
                     });
                     var that = this;
                     myChart.on('click', function (params) {
+                        // var city = params.name;
+                        // loadChart(city);
                         that.city_title = params.data.name;
                         if (params.seriesType == "scatter") {
+                            console.log("http://127.0.0.1:5000/informationau/" + params.data.name);
                             that.$http.get("http://127.0.0.1:5000/informationau/" + params.data.name).then(function (value) {
+                                console.log(value);
                                 that.city_info = value.body.Data;
                             });
                         }
+
                     });
                 }
 
@@ -747,18 +998,24 @@
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div >
                         <h1>Second Demo</h1>
+                        <!--<img src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/column/javascript-column-charts-graphs.png" alt="">-->
                         <button class="btn btn-primary" @click="show_all">SHOW</button>
                         <div id="demo2_1" style="height:600px;width:100%"></div>
+                        <!--<div id="demo2_2" style="height:500px;width:100%"></div>-->
                         <canvas id="can_demo2"></canvas>
                     </div>
                   </transition>`,
             methods: {
                 show_all:function (){
                     this.show_can(this.url_au,"demo2_1","Australia");
+                    //this.show_can(this.url_uk,"demo2_2","UK");
+
                 },
                 show_can: function (url, dom_id, graph_name) {
+                    console.log(url);
                     let dom = document.getElementById(dom_id);
                     var myChart = echarts.init(dom);
+                    console.log("22");
                     var dataStyle = {
                         normal: {
                             label: {
@@ -772,19 +1029,22 @@
                         }
                     };
                     var category;
-                    var cat_data;
+                    var cat_data
                     $.ajax({
                         url: this.url_au,
                         type: "get",
                         dataType: "json",
                         async: false,
+
                         success: function (result) {
                            category = result.data;
                            cat_data = result.value;
+
+
                         }
                     });
-                    var uk_cat;
-                    var uk_data;
+                    var uk_cat
+                    var uk_data
                     $.ajax({
                         url: this.url_uk,
                         type: "get",
@@ -794,10 +1054,16 @@
                         success: function (result) {
                             uk_cat = result.data;
                             uk_data = result.value;
+
+
                         }
                     });
+                    console.log(category);
+                    console.log(cat_data);
                     myChart.setOption(option = {
+                        // backgroundColor: 'white',
                         color: ['#ffdb6d', '#89c9e1', '#ce77b6', '#f29e29'],
+
                         title: {
                             text: graph_name,
                             x: 'center',
@@ -806,6 +1072,7 @@
                                 color: '#6c6c6c'
                             }
                         },
+
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -914,11 +1181,12 @@
 
                 }
             }
-        };
+        }
         var demo3 = {
             template: `<transition enter-active-class="animated zoomInDown" >
                     <div>
                         <h2>Weekly Work Hours</h2>
+                        <!--<button class="btn btn-primary" @click="show_can">SHOW</button>-->
                         <div id="container1" style="height:500px;width:1500px"></div>
                     </div>
                   </transition>`,
@@ -930,6 +1198,7 @@
             },
             props:['demo_status'],
             updated:function () {
+                console.log("change");
             },
             methods: {
                 show_can: function () {
@@ -947,6 +1216,7 @@
                         async: false,
 
                         success: function (result) {
+                            //console.log(this.dome_status.demo1_status);
                             option = {
                                 tooltip: {
                                     trigger: 'axis',
@@ -1073,7 +1343,12 @@
             mounted(){
                 this.show_can();
                 Vm.$on("trans_data", function (a) {
+                    // alert("1");
                     this.tag_status = a;
+                    // console.log("###########################");
+                    // console.log(this.tag_status);
+                    //this.show_can();
+                    // console.log("###########################");
                     var status = this.tag_status;
                     var dom = document.getElementById("container1");
                     var myChart = echarts.init(dom);
@@ -1213,7 +1488,10 @@
             },
         };
 
-        var routes = [
+        var routes = [{
+                "path": "/main",
+                component: main
+            },
             {
                 "path": "/demo1",
                 component: demo1
