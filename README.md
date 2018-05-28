@@ -8,10 +8,10 @@ Installation Guide
 - Environment:Python 3.6.1 
 - step1: Unzip server.zip
 - step2: Create a new project
-- step3: Paste all the file into the ./server into the root of the new project
+- step3: Paste all the file into the ./server under the root of the new project
 - step4: Set up the virtual environment and then open up the terminal window
 - step5: Install the libraries using the following command
-		pip install -r requirements.txt
+		pip3 install -r requirements.txt
 - step6: run app.py in PyCharm
 - step7: open ./Front/index.html in a browser
 	if chrome:
