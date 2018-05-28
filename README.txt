@@ -8,10 +8,10 @@ Installation Guide
 - Environment:Python 3.6.1 
 - step1: Unzip server.zip
 - step2: Create a new project
-- step3: Paste all the file int the ./server into the root of the new project
+- step3: Paste all the file into the ./server into the root of the new project
 - step4: Set up the virtual environment and then open up the terminal window
 - step5: Install the libraries using the following command
-		pip install -r requirements
+		pip install -r requirements.txt
 - step6: run app.py in PyCharm
 - step7: open ./Front/index.html in a browser
 	if chrome:
@@ -20,6 +20,5 @@ Installation Guide
 		Mac: open -a Google\ Chrome --args --disable-web-security
 
 Introduction
-This Data Mashup application combines geographic information and online job data to demonstrate job research and statistics of Australia and the United Kingdom.
-The web application is designed to do researches on three dimensionality, including Jobs by Location, Jobs by Industry, Weekly Work Hours which provides an overview on job geographic distrubution, indurtry job amount and workload by gender in the two countries.
+This Data Mashup application combines geographic information and online job data to demonstrate job research and statistics of Australia and the United Kingdom.The web application is designed to do researches on three dimensionality, including Jobs by Location, Jobs by Industry, Weekly Work Hours which provides an overview on job geographic distrubution, indurtry job amount and workload by gender in the two countries.
 There are diversified interaction for users to do quick filter or search for specific contents and due to RESTful apis design, much more functions is easy to expanded.
